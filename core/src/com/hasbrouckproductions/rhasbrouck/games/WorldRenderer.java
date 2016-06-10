@@ -2,6 +2,9 @@ package com.hasbrouckproductions.rhasbrouck.games;
 
 /**
  * Created by hasbrouckr on 6/10/2016.
+ *
+ * Renders the objects present from World Class
+ *
  */
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -22,7 +25,7 @@ public class WorldRenderer {
     }
 
     public void render () {
-        if (world.bob.position.y > cam.position.y) cam.position.y = world.bob.position.y;
+        if (world.ship.position.y > cam.position.y) cam.position.y = world.ship.position.y;
         cam.update();
         batch.setProjectionMatrix(cam.combined);
         renderBackground();
@@ -40,78 +43,49 @@ public class WorldRenderer {
     public void renderObjects () {
         batch.enableBlending();
         batch.begin();
-        renderBob();
-        renderPlatforms();
-        renderItems();
-        renderSquirrels();
-        renderCastle();
+        renderShip();
+        renderEnemies();
+        renderPowerUps();
         batch.end();
     }
 
-    private void renderBob () {
+    //render the ship depending on ship state
+    private void renderShip () {
         TextureRegion keyFrame;
-        switch (world.bob.state) {
-            case Bob.BOB_STATE_FALL:
-                keyFrame = Assets.bobFall.getKeyFrame(world.bob.stateTime, Animation.ANIMATION_LOOPING);
+        switch (world.ship.state) {
+            case MainShip.SHIP_STATE_ALIVE:
+                keyFrame = Assets.mainShip;
                 break;
-            case Bob.BOB_STATE_JUMP:
-                keyFrame = Assets.bobJump.getKeyFrame(world.bob.stateTime, Animation.ANIMATION_LOOPING);
+            case MainShip.SHIP_DEAD:
+                keyFrame = Assets.explosion;
                 break;
-            case Bob.BOB_STATE_HIT:
+            case MainShip.SHIP_STATE_HIT:
+                keyFrame = Assets.shipHit;
+                break;
             default:
-                keyFrame = Assets.bobHit;
+                keyFrame = Assets.shipHit;
         }
-
-        float side = world.bob.velocity.x < 0 ? -1 : 1;
-        if (side < 0)
-            batch.draw(keyFrame, world.bob.position.x + 0.5f, world.bob.position.y - 0.5f, side * 1, 1);
-        else
-            batch.draw(keyFrame, world.bob.position.x - 0.5f, world.bob.position.y - 0.5f, side * 1, 1);
     }
 
-    private void renderPlatforms () {
-        int len = world.platforms.size();
+    private void renderEnemies () {
+        int len = world.enemies.size();
         for (int i = 0; i < len; i++) {
-            Platform platform = world.platforms.get(i);
-            TextureRegion keyFrame = Assets.platform;
-            if (platform.state == Platform.PLATFORM_STATE_PULVERIZING) {
-                keyFrame = Assets.brakingPlatform.getKeyFrame(platform.stateTime, Animation.ANIMATION_NONLOOPING);
+            Enemy enemy = world.enemies.get(i);
+            TextureRegion keyFrame = Assets.enemyShip;
+            if (enemy.state == Enemy.ENEMY_IS_ALIVE) {
+                //use enemy sprite
+                //keyFrame = Assets.brakingPlatform.getKeyFrame(platform.stateTime, Animation.ANIMATION_NONLOOPING);
             }
 
-            batch.draw(keyFrame, platform.position.x - 1, platform.position.y - 0.25f, 2, 0.5f);
+            batch.draw(keyFrame, enemy.position.x - 1, enemy.position.y - 0.25f, 2, 0.5f);
         }
     }
 
-    private void renderItems () {
-        int len = world.springs.size();
+    private void renderPowerUps () {
+        int len = world.powerUps.size();
         for (int i = 0; i < len; i++) {
-            Spring spring = world.springs.get(i);
-            batch.draw(Assets.spring, spring.position.x - 0.5f, spring.position.y - 0.5f, 1, 1);
+            PowerUps power = world.powerUps.get(i);
+            batch.draw(Assets.powerUp, power.position.x - 0.5f, power.position.y - 0.5f, 1, 1);
         }
-
-        len = world.coins.size();
-        for (int i = 0; i < len; i++) {
-            Coin coin = world.coins.get(i);
-            TextureRegion keyFrame = Assets.coinAnim.getKeyFrame(coin.stateTime, Animation.ANIMATION_LOOPING);
-            batch.draw(keyFrame, coin.position.x - 0.5f, coin.position.y - 0.5f, 1, 1);
-        }
-    }
-
-    private void renderSquirrels () {
-        int len = world.squirrels.size();
-        for (int i = 0; i < len; i++) {
-            Squirrel squirrel = world.squirrels.get(i);
-            TextureRegion keyFrame = Assets.squirrelFly.getKeyFrame(squirrel.stateTime, Animation.ANIMATION_LOOPING);
-            float side = squirrel.velocity.x < 0 ? -1 : 1;
-            if (side < 0)
-                batch.draw(keyFrame, squirrel.position.x + 0.5f, squirrel.position.y - 0.5f, side * 1, 1);
-            else
-                batch.draw(keyFrame, squirrel.position.x - 0.5f, squirrel.position.y - 0.5f, side * 1, 1);
-        }
-    }
-
-    private void renderCastle () {
-        Castle castle = world.castle;
-        batch.draw(Assets.castle, castle.position.x - 1, castle.position.y - 1, 2, 2);
     }
 }

@@ -2,7 +2,10 @@ package com.hasbrouckproductions.rhasbrouck.games;
 
 /**
  * Created by hasbrouckr on 6/10/2016.
- * Generates level and goes through it
+ * Generates level and objects
+ * passes values to WorldRender to render
+ * every object on screen
+ *
  */
 import java.util.ArrayList;
 import java.util.List;
