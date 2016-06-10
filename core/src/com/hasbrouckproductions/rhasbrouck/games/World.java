@@ -34,7 +34,7 @@ public class World {
 
     public World (WorldListener listener) {
         this.ship = new MainShip(5, 1);
-        this.enemies = new ArrayList<Enemies>();
+        this.enemies = new ArrayList<Enemy>();
         this.powerUps = new ArrayList<PowerUps>();
         this.listener = listener;
         rand = new Random();
