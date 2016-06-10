@@ -24,7 +24,7 @@ public class World {
     public static final int WORLD_STATE_GAME_OVER = 2;
 
     public final MainShip ship;
-    public final List<Enemies> enemies;
+    public final List<Enemy> enemies;
     public final List<PowerUps> powerUps;
     public final WorldListener listener;
     public final Random rand;
@@ -33,16 +33,13 @@ public class World {
     public int state;
 
     public World (WorldListener listener) {
-        this.ship = new ship(5, 1);
-        this.platforms = new ArrayList<Platform>();
-        this.springs = new ArrayList<Spring>();
-        this.squirrels = new ArrayList<Squirrel>();
-        this.coins = new ArrayList<Coin>();
+        this.ship = new MainShip(5, 1);
+        this.enemies = new ArrayList<Enemies>();
+        this.powerUps = new ArrayList<PowerUps>();
         this.listener = listener;
         rand = new Random();
         generateLevel();
 
-        this.heightSoFar = 0;
         this.score = 0;
         this.state = WORLD_STATE_RUNNING;
     }
@@ -83,34 +80,19 @@ public class World {
     }
 
     public void update (float deltaTime, float accelX) {
-        updateBob(deltaTime, accelX);
-        updatePlatforms(deltaTime);
-        updateSquirrels(deltaTime);
-        updateCoins(deltaTime);
-        if (bob.state != Bob.BOB_STATE_HIT) checkCollisions();
+        updateShip(deltaTime, accelX);
+        updateEnemies(deltaTime);
+        updatePowerUps(deltaTime);
+        if (ship.state != ship.SHIP_STATE_HIT) checkCollisions();
         checkGameOver();
     }
 
-    private void updateBob (float deltaTime, float accelX) {
-        if (bob.state != Bob.BOB_STATE_HIT && bob.position.y <= 0.5f) bob.hitPlatform();
-        if (bob.state != Bob.BOB_STATE_HIT) bob.velocity.x = -accelX / 10 * Bob.BOB_MOVE_VELOCITY;
-        bob.update(deltaTime);
-        heightSoFar = Math.max(bob.position.y, heightSoFar);
+    private void updateShip (float deltaTime, float accelX) {
+        if (ship.state != ship.SHIP_STATE_HIT) ship.velocity.x = -accelX / 10 * ship.SHIP_MOVE_VELOCITY;
+        ship.update(deltaTime);
     }
 
-    private void updatePlatforms (float deltaTime) {
-        int len = platforms.size();
-        for (int i = 0; i < len; i++) {
-            Platform platform = platforms.get(i);
-            platform.update(deltaTime);
-            if (platform.state == Platform.PLATFORM_STATE_PULVERIZING && platform.stateTime > Platform.PLATFORM_PULVERIZE_TIME) {
-                platforms.remove(platform);
-                len = platforms.size();
-            }
-        }
-    }
-
-    private void updateSquirrels (float deltaTime) {
+    private void updateEnemies (float deltaTime) {
         int len = squirrels.size();
         for (int i = 0; i < len; i++) {
             Squirrel squirrel = squirrels.get(i);
@@ -118,7 +100,7 @@ public class World {
         }
     }
 
-    private void updateCoins (float deltaTime) {
+    private void updatePowerUps (float deltaTime) {
         int len = coins.size();
         for (int i = 0; i < len; i++) {
             Coin coin = coins.get(i);
@@ -127,29 +109,8 @@ public class World {
     }
 
     private void checkCollisions () {
-        checkPlatformCollisions();
         checkSquirrelCollisions();
         checkItemCollisions();
-        checkCastleCollisions();
-    }
-
-    private void checkPlatformCollisions () {
-        if (bob.velocity.y > 0) return;
-
-        int len = platforms.size();
-        for (int i = 0; i < len; i++) {
-            Platform platform = platforms.get(i);
-            if (bob.position.y > platform.position.y) {
-                if (bob.bounds.overlaps(platform.bounds)) {
-                    bob.hitPlatform();
-                    listener.jump();
-                    if (rand.nextFloat() > 0.5f) {
-                        platform.pulverize();
-                    }
-                    break;
-                }
-            }
-        }
     }
 
     private void checkSquirrelCollisions () {
