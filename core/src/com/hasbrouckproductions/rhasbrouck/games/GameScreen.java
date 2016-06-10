@@ -173,9 +173,9 @@ public class GameScreen extends ScreenAdapter {
         renderer.render();
 
         guiCam.update();
-        game.batcher.setProjectionMatrix(guiCam.combined);
-        game.batcher.enableBlending();
-        game.batcher.begin();
+        game.batch.setProjectionMatrix(guiCam.combined);
+        game.batch.enableBlending();
+        game.batch.begin();
         switch (state) {
             case GAME_READY:
                 presentReady();
@@ -193,34 +193,33 @@ public class GameScreen extends ScreenAdapter {
                 presentGameOver();
                 break;
         }
-        game.batcher.end();
+        game.batch.end();
     }
 
     private void presentReady () {
-        game.batcher.draw(Assets.ready, 160 - 192 / 2, 240 - 32 / 2, 192, 32);
+        game.batch.draw(Assets.ready, 160 - 192 / 2, 240 - 32 / 2, 192, 32);
     }
 
     private void presentRunning () {
-        game.batcher.draw(Assets.pause, 320 - 64, 480 - 64, 64, 64);
-        Assets.font.draw(game.batcher, scoreString, 16, 480 - 20);
+        game.batch.draw(Assets.pause, 320 - 64, 480 - 64, 64, 64);
+        Assets.font.draw(game.batch, scoreString, 16, 480 - 20);
     }
 
     private void presentPaused () {
-        game.batcher.draw(Assets.pauseMenu, 160 - 192 / 2, 240 - 96 / 2, 192, 96);
-        Assets.font.draw(game.batcher, scoreString, 16, 480 - 20);
+        game.batch.draw(Assets.pauseMenu, 160 - 192 / 2, 240 - 96 / 2, 192, 96);
+        Assets.font.draw(game.batch, scoreString, 16, 480 - 20);
     }
 
     private void presentLevelEnd () {
-        glyphLayout.setText(Assets.font, "the princess is ...");
-        Assets.font.draw(game.batcher, glyphLayout, 160 - glyphLayout.width / 2, 480 - 40);
-        glyphLayout.setText(Assets.font, "in another castle!");
-        Assets.font.draw(game.batcher, glyphLayout, 160 - glyphLayout.width / 2, 40);
+        Assets.font.draw(game.batch, glyphLayout, 160 - glyphLayout.width / 2, 480 - 40);
+        glyphLayout.setText(Asset s.font, "Level Complete!");
+        Assets.font.draw(game.batch, glyphLayout, 160 - glyphLayout.width / 2, 40);
     }
 
     private void presentGameOver () {
-        game.batcher.draw(Assets.gameOver, 160 - 160 / 2, 240 - 96 / 2, 160, 96);
+        game.batch.draw(Assets.gameOver, 160 - 160 / 2, 240 - 96 / 2, 160, 96);
         glyphLayout.setText(Assets.font, scoreString);
-        Assets.font.draw(game.batcher, scoreString, 160 - glyphLayout.width / 2, 480 - 20);
+        Assets.font.draw(game.batch, scoreString, 160 - glyphLayout.width / 2, 480 - 20);
     }
 
     @Override
