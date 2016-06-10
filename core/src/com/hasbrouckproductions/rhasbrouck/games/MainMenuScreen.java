@@ -53,14 +53,6 @@ public class MainMenuScreen extends ScreenAdapter {
                 game.setScreen(new HelpScreen(game));
                 return;
             }
-            if (soundBounds.contains(touchPoint.x, touchPoint.y)) {
-                Assets.playSound(Assets.clickSound);
-                Settings.soundEnabled = !Settings.soundEnabled;
-                if (Settings.soundEnabled)
-                    Assets.music.play();
-                else
-                    Assets.music.pause();
-            }
         }
     }
 
@@ -80,7 +72,7 @@ public class MainMenuScreen extends ScreenAdapter {
         game.batch.enableBlending();
         game.batch.begin();
         game.batch.draw(Assets.logo, 160 - 274 / 2, 480 - 10 - 142, 274, 142);
-        game.batch.draw(Assets.mainMenu, 10, 200 - 110 / 2, 300, 110);;
+        game.batch.draw(Assets.mainMenu, 10, 200 - 110 / 2, 300, 110);
         game.batch.end();
     }
 
