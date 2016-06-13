@@ -103,19 +103,12 @@ public class GameScreen extends ScreenAdapter {
                 state = GAME_PAUSED;
                 return;
             }
+
+            //Move Ship
+            world.update(deltaTime, touchPoint.x, touchPoint.y);
+
         }
 
-        ApplicationType appType = Gdx.app.getType();
-
-        // should work also with Gdx.input.isPeripheralAvailable(Peripheral.Accelerometer)
-        if (appType == ApplicationType.Android || appType == ApplicationType.iOS) {
-            world.update(deltaTime, Gdx.input.getAccelerometerX());
-        } else {
-            float accel = 0;
-            if (Gdx.input.isKeyPressed(Keys.DPAD_LEFT)) accel = 5f;
-            if (Gdx.input.isKeyPressed(Keys.DPAD_RIGHT)) accel = -5f;
-            world.update(deltaTime, accel);
-        }
         if (world.score != lastScore) {
             lastScore = world.score;
             scoreString = "SCORE: " + lastScore;

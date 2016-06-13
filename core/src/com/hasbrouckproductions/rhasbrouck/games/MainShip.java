@@ -7,10 +7,12 @@ public class MainShip extends DynamicGameObject {
     public static final int SHIP_STATE_ALIVE = 1;
     public static final int SHIP_STATE_HIT = 2;
     public static final int SHIP_DEAD = 3;
-    public static final float SHIP_MOVE_VELOCITY = 20;
+
     public static final float SHIP_WIDTH = 0.8f;
     public static final float SHIP_HEIGHT = 0.8f;
 
+    public static float xPos;
+    public static float yPos;
     int state;
     float stateTime;
 

@@ -62,17 +62,19 @@ public class World {
 
     }
 
-    public void update(float deltaTime, float accelX) {
-        updateShip(deltaTime, accelX);
+    public void update(float deltaTime, float x, float y) {
+        updateShip(deltaTime, x, y);
         updateEnemies(deltaTime);
         updatePowerUps(deltaTime);
         if (ship.state != ship.SHIP_STATE_HIT) checkCollisions();
         checkGameOver();
     }
 
-    private void updateShip(float deltaTime, float accelX) {
-        if (ship.state != ship.SHIP_STATE_HIT)
-            ship.velocity.x = -accelX / 10 * ship.SHIP_MOVE_VELOCITY;
+    private void updateShip(float deltaTime, float x, float y) {
+        if (ship.state != ship.SHIP_STATE_HIT) {
+            ship.xPos = x;
+            ship.yPos = y;
+        }
         ship.update(deltaTime);
     }
 
