@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.hasbrouckproductions.rhasbrouck.games.World.WorldListener;
 
 public class GameScreen extends ScreenAdapter {
+
     static final int GAME_READY = 0;
     static final int GAME_RUNNING = 1;
     static final int GAME_PAUSED = 2;
@@ -57,7 +58,7 @@ public class GameScreen extends ScreenAdapter {
 
         };
         world = new World(worldListener);
-        renderer = new WorldRenderer(game.batcher, world);
+        renderer = new WorldRenderer(game.batch, world);
         pauseBounds = new Rectangle(320 - 64, 480 - 64, 64, 64);
         resumeBounds = new Rectangle(160 - 96, 240, 192, 36);
         quitBounds = new Rectangle(160 - 96, 240 - 36, 192, 36);
@@ -124,11 +125,11 @@ public class GameScreen extends ScreenAdapter {
         }
         if (world.state == World.WORLD_STATE_GAME_OVER) {
             state = GAME_OVER;
-            if (lastScore >= Settings.highscores[4])
+            if (lastScore >= Settings.highScore)
                 scoreString = "NEW HIGHSCORE: " + lastScore;
             else
                 scoreString = "SCORE: " + lastScore;
-            Settings.addScore(lastScore);
+            Settings.addHighScore(lastScore);
             Settings.save();
         }
     }
@@ -154,7 +155,7 @@ public class GameScreen extends ScreenAdapter {
     private void updateLevelEnd () {
         if (Gdx.input.justTouched()) {
             world = new World(worldListener);
-            renderer = new WorldRenderer(game.batcher, world);
+            renderer = new WorldRenderer(game.batch, world);
             world.score = lastScore;
             state = GAME_READY;
         }
@@ -212,7 +213,7 @@ public class GameScreen extends ScreenAdapter {
 
     private void presentLevelEnd () {
         Assets.font.draw(game.batch, glyphLayout, 160 - glyphLayout.width / 2, 480 - 40);
-        glyphLayout.setText(Asset s.font, "Level Complete!");
+        glyphLayout.setText(Assets.font, "Level Complete!");
         Assets.font.draw(game.batch, glyphLayout, 160 - glyphLayout.width / 2, 40);
     }
 
@@ -232,4 +233,5 @@ public class GameScreen extends ScreenAdapter {
     public void pause () {
         if (state == GAME_RUNNING) state = GAME_PAUSED;
     }
+
 }

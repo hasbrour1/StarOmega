@@ -15,7 +15,6 @@ import com.badlogic.gdx.math.Vector3;
 public class MainMenuScreen extends ScreenAdapter {
     StarOmega game;
     OrthographicCamera guiCam;
-    Rectangle soundBounds;
     Rectangle playBounds;
     Rectangle highscoresBounds;
     Rectangle helpBounds;
@@ -26,7 +25,6 @@ public class MainMenuScreen extends ScreenAdapter {
 
         guiCam = new OrthographicCamera();
         guiCam.setToOrtho(false, 800, 480);
-        soundBounds = new Rectangle(0, 0, 64, 64);
         playBounds = new Rectangle(160 - 150, 200 + 18, 300, 36);
         highscoresBounds = new Rectangle(160 - 150, 200 - 18, 300, 36);
         helpBounds = new Rectangle(160 - 150, 200 - 18 - 36, 300, 36);
@@ -66,13 +64,13 @@ public class MainMenuScreen extends ScreenAdapter {
 
         game.batch.disableBlending();
         game.batch.begin();
-        game.batch.draw(Assets.backgroundRegion, 0, 0, 320, 480);
+        game.batch.draw(Assets.backgroundRegion, 0, 0, 800, 480);
         game.batch.end();
 
         game.batch.enableBlending();
         game.batch.begin();
-        game.batch.draw(Assets.logo, 160 - 274 / 2, 480 - 10 - 142, 274, 142);
-        game.batch.draw(Assets.mainMenu, 10, 200 - 110 / 2, 300, 110);
+        game.batch.draw(Assets.logo, 200, 10, 280, 200);
+        //game.batch.draw(Assets.mainMenu, 10, 200 - 110 / 2, 300, 110);
         game.batch.end();
     }
 
