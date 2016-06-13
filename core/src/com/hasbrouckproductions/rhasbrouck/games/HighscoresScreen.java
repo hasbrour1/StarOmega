@@ -41,11 +41,11 @@ public class HighscoresScreen extends ScreenAdapter {
         game.batch.enableBlending();
 
         game.batch.begin();
-        Assets.font.draw(game.batch, "High Scores:", 300, 360);
-        Assets.font.draw(game.batch, "1.", 300, 340);
-        Assets.font.draw(game.batch, "2.", 300, 300);
-        Assets.font.draw(game.batch, "3.", 300, 260);
-        Assets.font.draw(game.batch, "4.", 300, 220);
+        Assets.font.draw(game.batch, "High Scores:", 200, 360);
+        Assets.font.draw(game.batch, "1.", 200, 330);
+        Assets.font.draw(game.batch, "2.", 200, 300);
+        Assets.font.draw(game.batch, "3.", 200, 270);
+        Assets.font.draw(game.batch, "4.", 200, 230);
         game.batch.end();
     }
 

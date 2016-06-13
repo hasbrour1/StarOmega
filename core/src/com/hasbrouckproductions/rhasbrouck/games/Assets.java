@@ -18,6 +18,9 @@ public class Assets {
     public static Texture startButton;
     public static Texture highScoreButton;
 
+    public static TextureRegion mainShip;
+    public static TextureRegion enemyShip;
+
     //no texture file yet
     public static Texture ready;
     public static Texture pause;
@@ -25,10 +28,10 @@ public class Assets {
     public static Texture gameOver;
     public static Texture powerUp;
 
-    public static TextureRegion mainShip;
+
     public static TextureRegion explosion;
     public static TextureRegion shipHit;
-    public static TextureRegion enemyShip;
+
 
     public static Sound clickSound;
 
@@ -44,6 +47,9 @@ public class Assets {
         logo = new Texture(Gdx.files.internal("data/img/logo.png"));
         highScoreButton = new Texture(Gdx.files.internal("data/img/highScoreButton.png"));
         startButton = new Texture(Gdx.files.internal("data/img/startButton.png"));
+
+        mainShip = new TextureRegion(new Texture(Gdx.files.internal("data/img/mainShip2.pgn")), 50,50, 50, 50);
+        enemyShip = new TextureRegion(new Texture(Gdx.files.internal("data/img/enemyShip.pgn")), 400,200, 50, 50);
 
         clickSound = Gdx.audio.newSound(Gdx.files.internal("data/sound/clickSound.wav"));
 

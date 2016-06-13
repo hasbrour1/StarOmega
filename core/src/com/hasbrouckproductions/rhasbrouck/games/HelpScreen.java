@@ -46,11 +46,11 @@ public class HelpScreen extends ScreenAdapter{
 
         game.batch.enableBlending();
         game.batch.begin();
-        Assets.font.draw(game.batch, "How to play:", 300, 360);
-        Assets.font.draw(game.batch, "Touch screen to move ship", 300, 330);
-        Assets.font.draw(game.batch, "and fire weapons.  Don't", 300, 300);
-        Assets.font.draw(game.batch, "get hit by enemy fire.  Power UPs give", 300, 270);
-        Assets.font.draw(game.batch, "another laser.", 300, 230);
+        Assets.font.draw(game.batch, "How to play:", 200, 360);
+        Assets.font.draw(game.batch, "Touch screen to move ship", 200, 330);
+        Assets.font.draw(game.batch, "and fire weapons.  Don't", 200, 300);
+        Assets.font.draw(game.batch, "get hit by enemy fire.  Power UPs give", 200, 270);
+        Assets.font.draw(game.batch, "another laser.", 200, 230);
         game.batch.end();
 
     }
