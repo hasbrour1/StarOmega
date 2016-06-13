@@ -25,9 +25,9 @@ public class MainMenuScreen extends ScreenAdapter {
 
         guiCam = new OrthographicCamera();
         guiCam.setToOrtho(false, 800, 480);
-        playBounds = new Rectangle(160 - 150, 200 + 18, 300, 36);
-        highscoresBounds = new Rectangle(160 - 150, 200 - 18, 300, 36);
-        helpBounds = new Rectangle(160 - 150, 200 - 18 - 36, 300, 36);
+        playBounds = new Rectangle(380, 180, 88, 40);
+        highscoresBounds = new Rectangle(350, 110, 153, 40);
+        helpBounds = new Rectangle(350, 50, 153, 40);
         touchPoint = new Vector3();
     }
 
@@ -69,8 +69,9 @@ public class MainMenuScreen extends ScreenAdapter {
 
         game.batch.enableBlending();
         game.batch.begin();
-        game.batch.draw(Assets.logo, 200, 10, 280, 200);
-        //game.batch.draw(Assets.mainMenu, 10, 200 - 110 / 2, 300, 110);
+        game.batch.draw(Assets.logo, 300, 260, 240, 200);
+        game.batch.draw(Assets.startButton, 380, 180, 88, 40);
+        game.batch.draw(Assets.highScoreButton, 350, 110, 153, 40);
         game.batch.end();
     }
 

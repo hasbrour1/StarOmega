@@ -15,6 +15,8 @@ public class Assets {
 
     public static Texture logo;
     public static Texture backgroundRegion;
+    public static Texture startButton;
+    public static Texture highScoreButton;
 
     //no texture file yet
     public static Texture ready;
@@ -41,6 +43,8 @@ public class Assets {
 
         backgroundRegion = new Texture(Gdx.files.internal("data/img/backgroundRegion.jpg"));
         logo = new Texture(Gdx.files.internal("data/img/logo.png"));
+        highScoreButton = new Texture(Gdx.files.internal("data/img/highScoreButton.png"));
+        startButton = new Texture(Gdx.files.internal("data/img/startButton.png"));
 
         clickSound = Gdx.audio.newSound(Gdx.files.internal("data/sound/clickSound.wav"));
 
