@@ -12,16 +12,18 @@ import com.badlogic.gdx.math.Rectangle;
 public class HighscoresScreen extends ScreenAdapter {
 
     StarOmega game;
-    Rectangle scoreArea;
     OrthographicCamera guiCam;
 
     public HighscoresScreen(StarOmega game){
         this.game = game;
-        scoreArea = new Rectangle(0,0,100,100);
+        guiCam = new OrthographicCamera();
+        guiCam.setToOrtho(false, 800, 480);
     }
 
     public void update(){
-
+        if (Gdx.input.justTouched()) {
+            game.setScreen(new MainMenuScreen(game));
+        }
     }
 
     public void draw(){
@@ -33,12 +35,24 @@ public class HighscoresScreen extends ScreenAdapter {
 
         game.batch.disableBlending();
         game.batch.begin();
-        game.batch.draw(Assets.backgroundRegion, 0, 0, 320, 480);
+        game.batch.draw(Assets.backgroundRegion, 0, 0, 800, 480);
         game.batch.end();
 
         game.batch.enableBlending();
-        game.batch.begin();
 
+        game.batch.begin();
+        Assets.font.draw(game.batch, "High Scores:", 300, 360);
+        Assets.font.draw(game.batch, "1.", 300, 340);
+        Assets.font.draw(game.batch, "2.", 300, 300);
+        Assets.font.draw(game.batch, "3.", 300, 260);
+        Assets.font.draw(game.batch, "4.", 300, 220);
         game.batch.end();
     }
+
+    @Override
+    public void render (float delta) {
+        update();
+        draw();
+    }
+
 }

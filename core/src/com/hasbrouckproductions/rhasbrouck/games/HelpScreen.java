@@ -17,7 +17,6 @@ public class HelpScreen extends ScreenAdapter{
     StarOmega game;
 
     OrthographicCamera guiCam;
-    Vector3 touchPoint;
     Texture helpImage;
     TextureRegion helpRegion;
 
@@ -25,12 +24,12 @@ public class HelpScreen extends ScreenAdapter{
         this.game = game;
         guiCam = new OrthographicCamera();
         guiCam.setToOrtho(false, 800, 480);
-        helpImage = Assets.loadTexture("data/help.png");
-        helpRegion = new TextureRegion(helpImage, 0, 0, 320, 480);
     }
 
     public void update () {
-
+        if (Gdx.input.justTouched()) {
+            game.setScreen(new MainMenuScreen(game));
+        }
     }
 
     public void draw () {
@@ -42,7 +41,16 @@ public class HelpScreen extends ScreenAdapter{
         game.batch.setProjectionMatrix(guiCam.combined);
         game.batch.disableBlending();
         game.batch.begin();
-        game.batch.draw(helpRegion, 0, 0);
+        game.batch.draw(Assets.backgroundRegion, 0, 0, 800, 480);
+        game.batch.end();
+
+        game.batch.enableBlending();
+        game.batch.begin();
+        Assets.font.draw(game.batch, "How to play:", 300, 360);
+        Assets.font.draw(game.batch, "Touch screen to move ship", 300, 330);
+        Assets.font.draw(game.batch, "and fire weapons.  Don't", 300, 300);
+        Assets.font.draw(game.batch, "get hit by enemy fire.  Power UPs give", 300, 270);
+        Assets.font.draw(game.batch, "another laser.", 300, 230);
         game.batch.end();
 
     }

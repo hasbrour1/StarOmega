@@ -36,7 +36,6 @@ public class Assets {
     public static Sound shootSound;
     public static Sound hitSound;
 
-    //no font yet
     public static BitmapFont font;
 
     public static void load(){
@@ -47,6 +46,9 @@ public class Assets {
         startButton = new Texture(Gdx.files.internal("data/img/startButton.png"));
 
         clickSound = Gdx.audio.newSound(Gdx.files.internal("data/sound/clickSound.wav"));
+
+        font = new BitmapFont(Gdx.files.internal("data/fonts/mainFont.fnt"),
+                Gdx.files.internal("data/fonts/mainFont.png"),false);
 
     }
 
