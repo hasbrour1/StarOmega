@@ -17,11 +17,6 @@ public class Assets {
     public static Texture backgroundRegion;
     public static Texture startButton;
     public static Texture highScoreButton;
-
-    public static TextureRegion mainShip;
-    public static TextureRegion enemyShip;
-
-    //no texture file yet
     public static Texture ready;
     public static Texture pause;
     public static Texture pauseMenu;
@@ -29,13 +24,13 @@ public class Assets {
     public static Texture powerUp;
 
 
+    public static TextureRegion mainShip;
+    public static TextureRegion enemyShip;
     public static TextureRegion explosion;
     public static TextureRegion shipHit;
 
 
     public static Sound clickSound;
-
-    //no sound file yet
     public static Sound shootSound;
     public static Sound hitSound;
 
@@ -47,11 +42,19 @@ public class Assets {
         logo = new Texture(Gdx.files.internal("data/img/logo.png"));
         highScoreButton = new Texture(Gdx.files.internal("data/img/highScoreButton.png"));
         startButton = new Texture(Gdx.files.internal("data/img/startButton.png"));
+        ready = new Texture(Gdx.files.internal("data/img/ready.png"));
+        pause = new Texture(Gdx.files.internal("data/img/pause.png"));
+        gameOver = new Texture(Gdx.files.internal("data/img/gameOver.png"));
+        powerUp = new Texture(Gdx.files.internal("data/img/powerUp.png"));
 
-        mainShip = new TextureRegion(new Texture(Gdx.files.internal("data/img/mainShip2.pgn")), 50,50, 50, 50);
-        enemyShip = new TextureRegion(new Texture(Gdx.files.internal("data/img/enemyShip.pgn")), 400,200, 50, 50);
+        mainShip = new TextureRegion(new Texture(Gdx.files.internal("data/img/mainShip2.png")), 50,50, 50, 50);
+        enemyShip = new TextureRegion(new Texture(Gdx.files.internal("data/img/enemyShip.png")), 400,200, 50, 50);
+        explosion = new TextureRegion(new Texture(Gdx.files.internal("data/img/explosion.png")), 400,200, 50, 50);
+        shipHit = new TextureRegion(new Texture(Gdx.files.internal("data/img/explosion.png")), 400,200, 50, 50);
 
         clickSound = Gdx.audio.newSound(Gdx.files.internal("data/sound/clickSound.wav"));
+        shootSound = Gdx.audio.newSound(Gdx.files.internal("data/sound/shootSound.mp3"));
+        hitSound = Gdx.audio.newSound(Gdx.files.internal("data/sound/hitSound.wav"));
 
         font = new BitmapFont(Gdx.files.internal("data/fonts/mainFont.fnt"),
                 Gdx.files.internal("data/fonts/mainFont.png"),false);
