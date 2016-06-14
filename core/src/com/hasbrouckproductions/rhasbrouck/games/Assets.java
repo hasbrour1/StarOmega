@@ -47,7 +47,7 @@ public class Assets {
         gameOver = new Texture(Gdx.files.internal("data/img/gameOver.png"));
         powerUp = new Texture(Gdx.files.internal("data/img/powerUp.png"));
 
-        mainShip = new TextureRegion(new Texture(Gdx.files.internal("data/img/mainShip2.png")), 0,0, 50, 50);
+        mainShip = new TextureRegion(new Texture(Gdx.files.internal("data/img/mainShipScaled.png")), 0,0, 100, 100);
         enemyShip = new TextureRegion(new Texture(Gdx.files.internal("data/img/enemyShip.png")), 0,0, 50, 50);
         explosion = new TextureRegion(new Texture(Gdx.files.internal("data/img/explosion.png")), 0,0, 50, 50);
         shipHit = new TextureRegion(new Texture(Gdx.files.internal("data/img/explosion.png")), 0,0, 50, 50);

@@ -110,7 +110,7 @@ public class GameScreen extends ScreenAdapter {
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             guiCam.unproject(touchPos);
             //Move Ship
-            world.update(deltaTime, touchPos.x - 25, touchPos.y - 25);
+            world.update(deltaTime, touchPos.x - 50, touchPos.y - 50);
         }
 
         if (world.score != lastScore) {

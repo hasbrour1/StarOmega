@@ -61,7 +61,7 @@ public class WorldRenderer {
             default:
                 keyFrame = Assets.mainShip;
         }
-        batch.draw(keyFrame, world.ship.xPos, world.ship.yPos, 50, 50);
+        batch.draw(keyFrame, world.ship.xPos, world.ship.yPos, 100, 100);
     }
 
     private void renderEnemies () {
