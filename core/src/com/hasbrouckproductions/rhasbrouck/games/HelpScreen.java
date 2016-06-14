@@ -17,7 +17,6 @@ public class HelpScreen extends ScreenAdapter{
     StarOmega game;
 
     OrthographicCamera guiCam;
-    Texture helpImage;
     TextureRegion helpRegion;
 
     public HelpScreen (StarOmega game) {
@@ -59,10 +58,5 @@ public class HelpScreen extends ScreenAdapter{
     public void render (float delta) {
         draw();
         update();
-    }
-
-    @Override
-    public void hide () {
-        helpImage.dispose();
     }
 }
