@@ -25,14 +25,9 @@ public class MainShip extends DynamicGameObject {
         powerUp = 0;
     }
 
-    public void update (float deltaTime) {
-        position.add(velocity.x * deltaTime, velocity.y * deltaTime);
-        bounds.x = position.x - bounds.width / 2;
-        bounds.y = position.y - bounds.height / 2;
-
-
-        if (position.x < 0) position.x = World.WORLD_WIDTH;
-        if (position.x > World.WORLD_WIDTH) position.x = 0;
+    public void update (float deltaTime, float x, float y) {
+        xPos = x;
+        yPos = y;
 
         stateTime += deltaTime;
     }

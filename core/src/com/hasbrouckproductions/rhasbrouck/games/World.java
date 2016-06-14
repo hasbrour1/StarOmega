@@ -72,10 +72,8 @@ public class World {
 
     private void updateShip(float deltaTime, float x, float y) {
         if (ship.state != ship.SHIP_STATE_HIT) {
-            ship.xPos = x;
-            ship.yPos = y;
+            ship.update(deltaTime, x, y);
         }
-        ship.update(deltaTime);
     }
 
     private void updateEnemies(float deltaTime) {

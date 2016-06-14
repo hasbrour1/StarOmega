@@ -103,10 +103,14 @@ public class GameScreen extends ScreenAdapter {
                 state = GAME_PAUSED;
                 return;
             }
+        }
 
+        if(Gdx.input.isTouched()){
+            Vector3 touchPos = new Vector3();
+            touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+            guiCam.unproject(touchPos);
             //Move Ship
-            world.update(deltaTime, touchPoint.x, touchPoint.y);
-
+            world.update(deltaTime, touchPos.x - 25, touchPos.y - 25);
         }
 
         if (world.score != lastScore) {

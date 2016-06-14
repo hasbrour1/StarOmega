@@ -11,21 +11,18 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class WorldRenderer {
-    static final float FRUSTUM_WIDTH = 10;
-    static final float FRUSTUM_HEIGHT = 15;
     World world;
     OrthographicCamera cam;
     SpriteBatch batch;
 
     public WorldRenderer (SpriteBatch batch, World world) {
         this.world = world;
-        this.cam = new OrthographicCamera(FRUSTUM_WIDTH, FRUSTUM_HEIGHT);
-        this.cam.position.set(FRUSTUM_WIDTH / 2, FRUSTUM_HEIGHT / 2, 0);
+        cam = new OrthographicCamera();
+        cam.setToOrtho(false, 800, 480);
         this.batch = batch;
     }
 
     public void render () {
-        if (world.ship.position.y > cam.position.y) cam.position.y = world.ship.position.y;
         cam.update();
         batch.setProjectionMatrix(cam.combined);
         renderBackground();
@@ -35,8 +32,7 @@ public class WorldRenderer {
     public void renderBackground () {
         batch.disableBlending();
         batch.begin();
-        batch.draw(Assets.backgroundRegion, cam.position.x - FRUSTUM_WIDTH / 2, cam.position.y - FRUSTUM_HEIGHT / 2, FRUSTUM_WIDTH,
-                FRUSTUM_HEIGHT);
+        batch.draw(Assets.backgroundRegion, 0, 0, 800, 480);
         batch.end();
     }
 
@@ -63,7 +59,7 @@ public class WorldRenderer {
                 keyFrame = Assets.shipHit;
                 break;
             default:
-                keyFrame = Assets.shipHit;
+                keyFrame = Assets.mainShip;
         }
         batch.draw(keyFrame, world.ship.xPos, world.ship.yPos, 50, 50);
     }
