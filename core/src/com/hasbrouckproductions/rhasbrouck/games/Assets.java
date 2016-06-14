@@ -46,6 +46,7 @@ public class Assets {
         helpButton = new Texture(Gdx.files.internal("data/img/help.png"));
         ready = new Texture(Gdx.files.internal("data/img/ready.png"));
         pause = new Texture(Gdx.files.internal("data/img/pause.png"));
+        pauseMenu = new Texture(Gdx.files.internal("data/img/pauseMenu.png"));
         gameOver = new Texture(Gdx.files.internal("data/img/gameOver.png"));
         powerUp = new Texture(Gdx.files.internal("data/img/powerUp.png"));
 
