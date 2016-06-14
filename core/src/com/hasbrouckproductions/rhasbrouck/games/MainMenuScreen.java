@@ -72,7 +72,7 @@ public class MainMenuScreen extends ScreenAdapter {
         game.batch.draw(Assets.logo, 300, 260, 240, 200);
         game.batch.draw(Assets.startButton, 380, 180, 88, 40);
         game.batch.draw(Assets.highScoreButton, 350, 110, 153, 40);
-        game.batch.draw(Assets.highScoreButton, 380, 50, 84, 41);
+        game.batch.draw(Assets.helpButton, 380, 50, 84, 41);
         game.batch.end();
     }
 
