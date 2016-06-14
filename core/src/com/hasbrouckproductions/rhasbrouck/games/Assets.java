@@ -17,6 +17,7 @@ public class Assets {
     public static Texture backgroundRegion;
     public static Texture startButton;
     public static Texture highScoreButton;
+    public static Texture helpButton;
     public static Texture ready;
     public static Texture pause;
     public static Texture pauseMenu;
@@ -42,6 +43,7 @@ public class Assets {
         logo = new Texture(Gdx.files.internal("data/img/logo.png"));
         highScoreButton = new Texture(Gdx.files.internal("data/img/highScoreButton.png"));
         startButton = new Texture(Gdx.files.internal("data/img/startButton.png"));
+        helpButton = new Texture(Gdx.files.internal("data/img/help.png"));
         ready = new Texture(Gdx.files.internal("data/img/ready.png"));
         pause = new Texture(Gdx.files.internal("data/img/pause.png"));
         gameOver = new Texture(Gdx.files.internal("data/img/gameOver.png"));

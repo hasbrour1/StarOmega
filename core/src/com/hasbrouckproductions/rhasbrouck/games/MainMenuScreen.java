@@ -27,7 +27,7 @@ public class MainMenuScreen extends ScreenAdapter {
         guiCam.setToOrtho(false, 800, 480);
         playBounds = new Rectangle(380, 180, 88, 40);
         highscoresBounds = new Rectangle(350, 110, 153, 40);
-        helpBounds = new Rectangle(350, 50, 153, 40);
+        helpBounds = new Rectangle(380, 50, 84, 41);
         touchPoint = new Vector3();
     }
 
@@ -72,6 +72,7 @@ public class MainMenuScreen extends ScreenAdapter {
         game.batch.draw(Assets.logo, 300, 260, 240, 200);
         game.batch.draw(Assets.startButton, 380, 180, 88, 40);
         game.batch.draw(Assets.highScoreButton, 350, 110, 153, 40);
+        game.batch.draw(Assets.highScoreButton, 380, 50, 84, 41);
         game.batch.end();
     }
 
