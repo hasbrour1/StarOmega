@@ -1,14 +1,14 @@
 package com.hasbrouckproductions.rhasbrouck.games;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Rectangle;
 
 /**
  * Created by hasbrouckr on 6/10/2016.
  */
 public class PowerUps extends DynamicGameObject {
-    public static final float POWERUP_HEIGHT = 0.6f;
-    public static final float POWERUP_WIDHT = 1;
-    public static final float POWERUP_VELOCITY = 3f;
+    public static final float POWERUP_HEIGHT = 50;
+    public static final float POWERUP_WIDHT = 50;
 
     public static int xPos;
     public static int yPos;
@@ -25,6 +25,7 @@ public class PowerUps extends DynamicGameObject {
     public void update(float deltaTime){
 
         xPos -= 200 * Gdx.graphics.getDeltaTime();
+        this.bounds = new Rectangle(xPos, yPos, POWERUP_WIDHT, POWERUP_HEIGHT);
 
         stateTime += deltaTime;
     }
