@@ -8,14 +8,22 @@ public class PowerUps extends DynamicGameObject {
     public static final float POWERUP_WIDHT = 1;
     public static final float POWERUP_VELOCITY = 3f;
 
+    public static int xPos;
+    public static int yPos;
+
     float stateTime = 0;
 
     public PowerUps(float x, float y){
         super(x, y, POWERUP_WIDHT, POWERUP_HEIGHT);
+        xPos = (int)x;
+        yPos = (int)y;
         stateTime = 0;
     }
 
     public void update(float deltaTime){
+
+        yPos -= 15;
+
         stateTime += deltaTime;
     }
 }

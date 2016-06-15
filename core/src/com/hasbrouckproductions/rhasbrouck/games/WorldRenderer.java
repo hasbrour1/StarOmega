@@ -82,7 +82,7 @@ public class WorldRenderer {
         int len = world.powerUps.size();
         for (int i = 0; i < len; i++) {
             PowerUps power = world.powerUps.get(i);
-            batch.draw(Assets.powerUp, power.position.x - 0.5f, power.position.y - 0.5f, 1, 1);
+            batch.draw(Assets.powerUp, power.xPos, power.yPos, 70, 70);
         }
     }
 }

@@ -21,8 +21,8 @@ public class World {
         public void hit();
     }
 
-    public static final float WORLD_WIDTH = 10;
-    public static final float WORLD_HEIGHT = 15 * 20;
+    public static final float WORLD_WIDTH = 800*4;
+    public static final float WORLD_HEIGHT = 400;
     public static final int WORLD_STATE_RUNNING = 0;
     public static final int WORLD_STATE_NEXT_LEVEL = 1;
     public static final int WORLD_STATE_GAME_OVER = 2;
@@ -57,9 +57,11 @@ public class World {
         enemies.add(new Enemy(400, 100));
         enemies.add(new Enemy(500, 150));
 
-        powerUps.add(new PowerUps(200, 650));
-
-
+        //generate 1 power up randomly in world
+        Random rand = new Random();
+        int powerX = rand.nextInt((int)WORLD_WIDTH - 850) + 850;
+        int powerY = rand.nextInt((int)WORLD_HEIGHT - 80) + 80;
+        powerUps.add(new PowerUps(powerX, powerY));
     }
 
     public void update(float deltaTime, float x, float y) {
