@@ -10,8 +10,8 @@ public class PowerUps extends DynamicGameObject {
     public static final float POWERUP_HEIGHT = 50;
     public static final float POWERUP_WIDHT = 50;
 
-    public static int xPos;
-    public static int yPos;
+    public int xPos;
+    public int yPos;
 
     float stateTime = 0;
 

@@ -26,7 +26,7 @@ public class Assets {
 
 
     public static TextureRegion mainShip;
-    public static TextureRegion enemyShip;
+    public static Texture enemyShip;
     public static TextureRegion explosion;
     public static TextureRegion shipHit;
 
@@ -51,7 +51,7 @@ public class Assets {
         powerUp = new Texture(Gdx.files.internal("data/img/powerUp.png"));
 
         mainShip = new TextureRegion(new Texture(Gdx.files.internal("data/img/mainShipScaled.png")), 0,0, 100, 100);
-        enemyShip = new TextureRegion(new Texture(Gdx.files.internal("data/img/enemyShipScaled.png")), 0,0, 70, 70);
+        enemyShip = new Texture(Gdx.files.internal("data/img/enemyShipScaled.png"));
         explosion = new TextureRegion(new Texture(Gdx.files.internal("data/img/explosion.png")), 0,0, 50, 50);
         shipHit = new TextureRegion(new Texture(Gdx.files.internal("data/img/explosion.png")), 0,0, 50, 50);
 

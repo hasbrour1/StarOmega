@@ -32,8 +32,8 @@ public class World {
     public static final int WORLD_STATE_GAME_OVER = 2;
 
     public final MainShip ship;
-    public final List<Enemy> enemies;
-    public final List<PowerUps> powerUps;
+    public final ArrayList<Enemy> enemies;
+    public final ArrayList<PowerUps> powerUps;
     public final WorldListener listener;
     public final Random rand;
 
@@ -55,11 +55,11 @@ public class World {
     private void generateLevel() {
 
         //For now create 5 enemies and 1 power up
-        enemies.add(new Enemy(100, 100));
-        enemies.add(new Enemy(200, 50));
-        //enemies.add(new Enemy(300, 200));
-        //enemies.add(new Enemy(400, 100));
-        //enemies.add(new Enemy(500, 150));
+        enemies.add(new Enemy(800, 100));
+        enemies.add(new Enemy(800 * 2, 50));
+        enemies.add(new Enemy(830 * 2, 200));
+        enemies.add(new Enemy(800 * 3 + 100, 100));
+        enemies.add(new Enemy(800 * 3, 300));
 
         //generate 1 power up randomly in world
         Random rand = new Random();
@@ -67,7 +67,6 @@ public class World {
         int powerY = rand.nextInt((int)WORLD_HEIGHT - 80) + 80;
         Gdx.app.log("POWER UP Creation",  powerX+ " " + powerY);
         powerUps.add(new PowerUps(powerX, powerY));
-        powerUps.add(new PowerUps(powerX + 200, powerY));
     }
 
     public void update(float deltaTime) {
