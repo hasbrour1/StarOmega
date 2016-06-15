@@ -3,6 +3,7 @@ package com.hasbrouckproductions.rhasbrouck.games;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 
 /**
  * Created by hasbrouckr on 6/10/2016.
@@ -31,7 +32,7 @@ public class Enemy extends DynamicGameObject{
     }
 
     public void update(float deltaTime){
-
+        this.bounds = new Rectangle(xPos, yPos, ENEMY_WIDTH, ENEMY_HEIGHT);
         xPos -= 100 * Gdx.graphics.getDeltaTime();
         stateTime += deltaTime;
     }
