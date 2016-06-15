@@ -57,9 +57,9 @@ public class World {
         //For now create 5 enemies and 1 power up
         enemies.add(new Enemy(100, 100));
         enemies.add(new Enemy(200, 50));
-        enemies.add(new Enemy(300, 200));
-        enemies.add(new Enemy(400, 100));
-        enemies.add(new Enemy(500, 150));
+        //enemies.add(new Enemy(300, 200));
+        //enemies.add(new Enemy(400, 100));
+        //enemies.add(new Enemy(500, 150));
 
         //generate 1 power up randomly in world
         Random rand = new Random();
@@ -67,6 +67,7 @@ public class World {
         int powerY = rand.nextInt((int)WORLD_HEIGHT - 80) + 80;
         Gdx.app.log("POWER UP Creation",  powerX+ " " + powerY);
         powerUps.add(new PowerUps(powerX, powerY));
+        powerUps.add(new PowerUps(powerX + 200, powerY));
     }
 
     public void update(float deltaTime) {

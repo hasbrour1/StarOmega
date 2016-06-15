@@ -8,9 +8,13 @@ package com.hasbrouckproductions.rhasbrouck.games;
  */
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Logger;
+
+import java.util.Iterator;
 
 public class WorldRenderer {
     World world;
@@ -67,16 +71,17 @@ public class WorldRenderer {
     }
 
     private void renderEnemies () {
+        /*
         int len = world.enemies.size();
         for (int i = 0; i < len; i++) {
             Enemy enemy = world.enemies.get(i);
             TextureRegion keyFrame = Assets.enemyShip;
-            if (enemy.state == Enemy.ENEMY_IS_ALIVE) {
-                //use enemy sprite
-                //keyFrame = Assets.brakingPlatform.getKeyFrame(platform.stateTime, Animation.ANIMATION_NONLOOPING);
-            }
 
-            batch.draw(keyFrame, enemy.position.x - 1, enemy.position.y - 0.25f, 2, 0.5f);
+            batch.draw(keyFrame, enemy.xPos, enemy.yPos, 70, 70);
+        }
+        */
+        for(Enemy enemy: world.enemies){
+            batch.draw(Assets.enemyShip, enemy.xPos, enemy.yPos, 70, 70);
         }
     }
 
