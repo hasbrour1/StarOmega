@@ -2,6 +2,11 @@ package com.hasbrouckproductions.rhasbrouck.games;
 
 /**
  * Created by hasbrouckr on 6/10/2016.
+ *
+ * Game screen for playing.  Uses World
+ * and WorldRenderer classes to maintain
+ * objects
+ *
  */
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
@@ -56,6 +61,8 @@ public class GameScreen extends ScreenAdapter {
                 Assets.playSound(Assets.hitSound);
             }
 
+            @Override
+            public void power() {Assets.playSound(Assets.hitSound);}
         };
         world = new World(worldListener);
         renderer = new WorldRenderer(game.batch, world);
@@ -110,8 +117,10 @@ public class GameScreen extends ScreenAdapter {
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             guiCam.unproject(touchPos);
             //Move Ship
-            world.update(deltaTime, touchPos.x - 50, touchPos.y - 50);
+            world.updateShip(deltaTime, touchPos.x - 50, touchPos.y - 50);
         }
+
+        world.update(deltaTime);
 
         if (world.score != lastScore) {
             lastScore = world.score;

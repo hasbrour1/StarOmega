@@ -1,5 +1,7 @@
 package com.hasbrouckproductions.rhasbrouck.games;
 
+import com.badlogic.gdx.Gdx;
+
 /**
  * Created by hasbrouckr on 6/10/2016.
  */
@@ -22,7 +24,7 @@ public class PowerUps extends DynamicGameObject {
 
     public void update(float deltaTime){
 
-        yPos -= 15;
+        xPos -= 200 * Gdx.graphics.getDeltaTime();
 
         stateTime += deltaTime;
     }

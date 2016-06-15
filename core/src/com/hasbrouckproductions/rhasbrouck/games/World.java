@@ -4,13 +4,15 @@ package com.hasbrouckproductions.rhasbrouck.games;
  * Created by hasbrouckr on 6/10/2016.
  * Generates level and objects
  * passes values to WorldRender to render
- * every object on screen
+ * every object on screen.  Generates level and
+ * updates objects positions.
  *
  */
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 
@@ -19,10 +21,12 @@ public class World {
         public void shoot();
 
         public void hit();
+
+        public void power();
     }
 
     public static final float WORLD_WIDTH = 800*4;
-    public static final float WORLD_HEIGHT = 400;
+    public static final float WORLD_HEIGHT = 350;
     public static final int WORLD_STATE_RUNNING = 0;
     public static final int WORLD_STATE_NEXT_LEVEL = 1;
     public static final int WORLD_STATE_GAME_OVER = 2;
@@ -61,18 +65,25 @@ public class World {
         Random rand = new Random();
         int powerX = rand.nextInt((int)WORLD_WIDTH - 850) + 850;
         int powerY = rand.nextInt((int)WORLD_HEIGHT - 80) + 80;
+        Gdx.app.log("POWER UP Creation",  powerX+ " " + powerY);
         powerUps.add(new PowerUps(powerX, powerY));
     }
 
-    public void update(float deltaTime, float x, float y) {
-        updateShip(deltaTime, x, y);
+    public void update(float deltaTime) {
+        updateShip(deltaTime);
         updateEnemies(deltaTime);
         updatePowerUps(deltaTime);
         if (ship.state != ship.SHIP_STATE_HIT) checkCollisions();
         checkGameOver();
     }
 
-    private void updateShip(float deltaTime, float x, float y) {
+    private void updateShip(float deltaTime){
+        if (ship.state != ship.SHIP_STATE_HIT) {
+            ship.update(deltaTime, ship.xPos, ship.yPos);
+        }
+    }
+
+    public void updateShip(float deltaTime, float x, float y) {
         if (ship.state != ship.SHIP_STATE_HIT) {
             ship.update(deltaTime, x, y);
         }
@@ -89,23 +100,27 @@ public class World {
     private void updatePowerUps(float deltaTime) {
         int len = powerUps.size();
         for (int i = 0; i < len; i++) {
+            Gdx.app.log("POWER UP ",  "Updating Power");
             PowerUps power = powerUps.get(i);
             power.update(deltaTime);
         }
     }
 
+    //Check main ship collisions with each object
     private void checkCollisions() {
         checkPowerUpCollisions();
         checkEnemyCollisions();
     }
 
+    //If collide with powerup, give ship power and remove power orb
     private void checkPowerUpCollisions() {
         int len = powerUps.size();
         for (int i = 0; i < len; i++) {
             PowerUps power = powerUps.get(i);
             if (power.bounds.overlaps(ship.bounds)) {
+                powerUps.remove(i);
                 ship.gotPower();
-                listener.hit();
+                listener.power();
             }
         }
     }

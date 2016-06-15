@@ -6,9 +6,11 @@ package com.hasbrouckproductions.rhasbrouck.games;
  * Renders the objects present from World Class
  *
  */
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Logger;
 
 public class WorldRenderer {
     World world;
@@ -80,8 +82,10 @@ public class WorldRenderer {
 
     private void renderPowerUps () {
         int len = world.powerUps.size();
+        Gdx.app.log("POWER UP ",  "Rendering Power Ups");
         for (int i = 0; i < len; i++) {
             PowerUps power = world.powerUps.get(i);
+            Gdx.app.log("POWER UP ",  power.xPos + " " + power.yPos);
             batch.draw(Assets.powerUp, power.xPos, power.yPos, 70, 70);
         }
     }
