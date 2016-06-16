@@ -101,11 +101,13 @@ public class World {
         //fire laser after cool down time if ship is moving
         if(ship.state == MainShip.SHIP_STATE_POWERUP){
             if(TimeUtils.nanoTime() - MainLaser.lastFireTime > 1000000000 / 2){
+                listener.shoot();
                 mainShipLasers.add(new MainLaser(ship.xPos + 100, ship.yPos + 55));
                 mainShipLasers.add(new MainLaser(ship.xPos + 100, ship.yPos + 35));
             }
         }else{
             if(TimeUtils.nanoTime() - MainLaser.lastFireTime > 1000000000 / 2){
+                listener.shoot();
                 mainShipLasers.add(new MainLaser(ship.xPos + 100, ship.yPos + 45));
             }
         }
