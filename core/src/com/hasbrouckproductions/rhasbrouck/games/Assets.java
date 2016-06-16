@@ -50,7 +50,7 @@ public class Assets {
         pauseMenu = new Texture(Gdx.files.internal("data/img/pauseMenu.png"));
         gameOver = new Texture(Gdx.files.internal("data/img/gameOver.png"));
         powerUp = new Texture(Gdx.files.internal("data/img/powerUp.png"));
-        mainLaser = new Texture(Gdx.files.internal("data/img/laser.jpg"));
+        mainLaser = new Texture(Gdx.files.internal("data/img/mainLaser.png"));
 
         mainShip = new TextureRegion(new Texture(Gdx.files.internal("data/img/mainShipScaled.png")), 0,0, 100, 100);
         enemyShip = new Texture(Gdx.files.internal("data/img/enemyShipScaled.png"));

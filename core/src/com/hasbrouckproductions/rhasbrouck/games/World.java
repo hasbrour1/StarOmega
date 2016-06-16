@@ -96,7 +96,7 @@ public class World {
     public void addMainShipFire(){
         //fire laser after cool down time if ship is moving
         if(TimeUtils.nanoTime() - MainLaser.lastFireTime > 1000000000 / 2){
-            mainShipLasers.add(new MainLaser(ship.xPos, ship.yPos));
+            mainShipLasers.add(new MainLaser(ship.xPos + 100, ship.yPos + 45));
         }
     }
 
@@ -105,7 +105,7 @@ public class World {
         for (int i = 0; i < len; i++) {
             MainLaser laser = mainShipLasers.get(i);
             laser.update();
-            if(laser.state == MainLaser.LASER_HIT){
+            if(laser.state == MainLaser.LASER_HIT || laser.xPos >= 800){
                 mainShipLasers.remove(i);
                 len --;
             }
@@ -117,7 +117,7 @@ public class World {
         for (int i = 0; i < len; i++) {
             Enemy enemy = enemies.get(i);
             enemy.update(deltaTime);
-            if(enemy.state == Enemy.ENEMY_IS_DEAD){
+            if(enemy.state == Enemy.ENEMY_IS_DEAD || enemy.xPos <= -50){
                 enemies.remove(i);
                 len --;
             }
@@ -130,6 +130,11 @@ public class World {
             Gdx.app.log("POWER UP ",  "Updating Power");
             PowerUps power = powerUps.get(i);
             power.update(deltaTime);
+
+            if(power.xPos <= -50){
+                powerUps.remove(i);
+                len--;
+            }
         }
     }
 
