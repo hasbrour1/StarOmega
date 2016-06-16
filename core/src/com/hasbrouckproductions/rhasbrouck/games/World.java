@@ -72,6 +72,7 @@ public class World {
         powerUps.add(new PowerUps(powerX, powerY));
     }
 
+    //Update each object
     public void update(float deltaTime) {
         updateShip(deltaTime);
         updateEnemies(deltaTime);
@@ -81,25 +82,36 @@ public class World {
         checkGameOver();
     }
 
+    //Updates ship position if not touched
     private void updateShip(float deltaTime){
         if (ship.state != ship.SHIP_STATE_HIT) {
             ship.update(deltaTime, ship.xPos, ship.yPos);
         }
     }
 
+    //update ship position if touched
     public void updateShip(float deltaTime, float x, float y) {
         if (ship.state != ship.SHIP_STATE_HIT) {
             ship.update(deltaTime, x, y);
         }
     }
 
+    //Shoot laser after a second sense last laser
     public void addMainShipFire(){
         //fire laser after cool down time if ship is moving
-        if(TimeUtils.nanoTime() - MainLaser.lastFireTime > 1000000000 / 2){
-            mainShipLasers.add(new MainLaser(ship.xPos + 100, ship.yPos + 45));
+        if(ship.state == MainShip.SHIP_STATE_POWERUP){
+            if(TimeUtils.nanoTime() - MainLaser.lastFireTime > 1000000000 / 2){
+                mainShipLasers.add(new MainLaser(ship.xPos + 100, ship.yPos + 55));
+                mainShipLasers.add(new MainLaser(ship.xPos + 100, ship.yPos + 35));
+            }
+        }else{
+            if(TimeUtils.nanoTime() - MainLaser.lastFireTime > 1000000000 / 2){
+                mainShipLasers.add(new MainLaser(ship.xPos + 100, ship.yPos + 45));
+            }
         }
     }
 
+    //update laser position
     public void updateMainShipFire(float deltaTime){
         int len = mainShipLasers.size();
         for (int i = 0; i < len; i++) {
@@ -112,6 +124,7 @@ public class World {
         }
     }
 
+    //update enemy position
     private void updateEnemies(float deltaTime) {
         int len = enemies.size();
         for (int i = 0; i < len; i++) {
@@ -124,6 +137,7 @@ public class World {
         }
     }
 
+    //update powerup position
     private void updatePowerUps(float deltaTime) {
         int len = powerUps.size();
         for (int i = 0; i < len; i++) {
@@ -146,6 +160,7 @@ public class World {
         checkEnemyLaserCollisions();
     }
 
+    //check if ship laser hits any enemies
     private void checkMainLaserCollisions(){
         //Check if laser hits enemy
         int lasLen = mainShipLasers.size();
@@ -165,6 +180,7 @@ public class World {
         }
     }
 
+    //Check if enemy lasers hit main ship
     private void checkEnemyLaserCollisions(){
 
     }
@@ -176,12 +192,14 @@ public class World {
             PowerUps power = powerUps.get(i);
             if (power.bounds.overlaps(ship.bounds)) {
                 powerUps.remove(i);
+                len--;
                 ship.gotPower();
                 listener.power();
             }
         }
     }
 
+    //if collide with enemy ship gets hit
     private void checkEnemyCollisions() {
         int len = enemies.size();
         for (int i = 0; i < len; i++) {
@@ -192,6 +210,7 @@ public class World {
         }
     }
 
+    //Checks if game is over
     private void checkGameOver() {
         if (ship.state == MainShip.SHIP_DEAD) {
             state = WORLD_STATE_GAME_OVER;

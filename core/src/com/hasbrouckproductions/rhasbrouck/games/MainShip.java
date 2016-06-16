@@ -7,8 +7,9 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class MainShip extends DynamicGameObject {
     public static final int SHIP_STATE_ALIVE = 1;
-    public static final int SHIP_STATE_HIT = 2;
-    public static final int SHIP_DEAD = 3;
+    public static final int SHIP_STATE_POWERUP = 2;
+    public static final int SHIP_STATE_HIT = 3;
+    public static final int SHIP_DEAD = 4;
 
     public static final float SHIP_WIDTH = 100;
     public static final float SHIP_HEIGHT = 100;
@@ -18,13 +19,10 @@ public class MainShip extends DynamicGameObject {
     int state;
     float stateTime;
 
-    int powerUp;
-
     public MainShip (float x, float y) {
         super(x, y, SHIP_WIDTH, SHIP_HEIGHT);
         stateTime = 0;
         state = SHIP_STATE_ALIVE;
-        powerUp = 0;
     }
 
     public void update (float deltaTime, float x, float y) {
@@ -36,16 +34,16 @@ public class MainShip extends DynamicGameObject {
 
     public void gotHit () {
         velocity.set(0, 0);
-        if(powerUp == 0) {
+        if(this.state == SHIP_STATE_ALIVE) {
             state = SHIP_DEAD;
         }
         else{
-            powerUp--;
+            state = SHIP_STATE_ALIVE;
         }
         stateTime = 0;
     }
 
     public void gotPower(){
-        powerUp = 1;
+        state = SHIP_STATE_POWERUP;
     }
 }
