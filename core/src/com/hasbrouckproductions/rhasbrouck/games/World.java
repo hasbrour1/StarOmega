@@ -208,7 +208,7 @@ public class World {
             Enemy enemy = enemies.get(i);
             if (ship.bounds.overlaps(enemy.bounds)) {
                 ship.gotHit();
-
+                listener.hit();
                 //TODO: show explosion animation
                 enemies.remove(i);
                 len--;

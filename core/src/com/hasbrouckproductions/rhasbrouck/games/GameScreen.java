@@ -30,6 +30,7 @@ public class GameScreen extends ScreenAdapter {
     StarOmega game;
 
     int state;
+    int level;
     OrthographicCamera guiCam;
     Vector3 touchPoint;
     World world;
@@ -71,6 +72,7 @@ public class GameScreen extends ScreenAdapter {
         quitBounds = new Rectangle(160 - 96, 240 - 36, 192, 36);
         lastScore = 0;
         scoreString = "SCORE: 0";
+        level = 1;
     }
 
     public void update (float deltaTime) {
@@ -141,6 +143,11 @@ public class GameScreen extends ScreenAdapter {
             Settings.addHighScore(lastScore);
             Settings.save();
         }
+
+        //if enemy array is empty then level is complete
+        if(world.enemies.isEmpty()){
+            state = GAME_LEVEL_END;
+        }
     }
 
     private void updatePaused () {
@@ -162,6 +169,7 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void updateLevelEnd () {
+        level++;
         if (Gdx.input.justTouched()) {
             world = new World(worldListener);
             renderer = new WorldRenderer(game.batch, world);
