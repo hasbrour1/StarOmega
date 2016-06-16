@@ -120,7 +120,7 @@ public class GameScreen extends ScreenAdapter {
             world.updateShip(deltaTime, touchPos.x - 50, touchPos.y - 50);
 
             //Shoot Laser
-            world.updateMainShipFire(deltaTime);
+            world.addMainShipFire();
         }
 
         world.update(deltaTime);

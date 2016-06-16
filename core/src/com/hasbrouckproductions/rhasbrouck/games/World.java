@@ -76,6 +76,7 @@ public class World {
         updateShip(deltaTime);
         updateEnemies(deltaTime);
         updatePowerUps(deltaTime);
+        updateMainShipFire(deltaTime);
         if (ship.state != ship.SHIP_STATE_HIT) checkCollisions();
         checkGameOver();
     }
@@ -92,12 +93,14 @@ public class World {
         }
     }
 
-    public void updateMainShipFire(float deltaTime){
+    public void addMainShipFire(){
         //fire laser after cool down time if ship is moving
         if(TimeUtils.nanoTime() - MainLaser.lastFireTime > 1000000000 / 2){
             mainShipLasers.add(new MainLaser(ship.xPos, ship.yPos));
         }
+    }
 
+    public void updateMainShipFire(float deltaTime){
         int len = mainShipLasers.size();
         for (int i = 0; i < len; i++) {
             MainLaser laser = mainShipLasers.get(i);
