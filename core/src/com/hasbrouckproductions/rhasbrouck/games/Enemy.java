@@ -10,8 +10,8 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class Enemy extends DynamicGameObject{
 
-    public final int ENEMY_IS_ALIVE = 1;
-    public final int ENEMY_IS_DEAD = 2;
+    public static final int ENEMY_IS_ALIVE = 1;
+    public static final int ENEMY_IS_DEAD = 2;
 
     public static final float ENEMY_WIDTH = 70;
     public static final float ENEMY_HEIGHT = 70;
@@ -28,7 +28,8 @@ public class Enemy extends DynamicGameObject{
         super(x, y, ENEMY_WIDTH, ENEMY_HEIGHT);
         xPos = x;
         yPos = y;
-        state = 1;
+        hp = 1;
+        state = ENEMY_IS_ALIVE;
     }
 
     public void update(float deltaTime){

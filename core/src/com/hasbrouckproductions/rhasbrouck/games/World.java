@@ -15,6 +15,7 @@ import java.util.Random;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.TimeUtils;
 
 public class World {
     public interface WorldListener {
@@ -34,6 +35,7 @@ public class World {
     public final MainShip ship;
     public final ArrayList<Enemy> enemies;
     public final ArrayList<PowerUps> powerUps;
+    public final ArrayList<MainLaser> mainShipLasers;
     public final WorldListener listener;
     public final Random rand;
 
@@ -44,6 +46,7 @@ public class World {
         this.ship = new MainShip(5, 1);
         this.enemies = new ArrayList<Enemy>();
         this.powerUps = new ArrayList<PowerUps>();
+        this.mainShipLasers = new ArrayList<MainLaser>();
         this.listener = listener;
         rand = new Random();
         generateLevel();
@@ -89,11 +92,32 @@ public class World {
         }
     }
 
+    public void updateMainShipFire(float deltaTime){
+        //fire laser after cool down time if ship is moving
+        if(TimeUtils.nanoTime() - MainLaser.lastFireTime > 1000000000 / 2){
+            mainShipLasers.add(new MainLaser(ship.xPos, ship.yPos));
+        }
+
+        int len = mainShipLasers.size();
+        for (int i = 0; i < len; i++) {
+            MainLaser laser = mainShipLasers.get(i);
+            laser.update();
+            if(laser.state == MainLaser.LASER_HIT){
+                mainShipLasers.remove(i);
+                len --;
+            }
+        }
+    }
+
     private void updateEnemies(float deltaTime) {
         int len = enemies.size();
         for (int i = 0; i < len; i++) {
             Enemy enemy = enemies.get(i);
             enemy.update(deltaTime);
+            if(enemy.state == Enemy.ENEMY_IS_DEAD){
+                enemies.remove(i);
+                len --;
+            }
         }
     }
 
@@ -110,6 +134,31 @@ public class World {
     private void checkCollisions() {
         checkPowerUpCollisions();
         checkEnemyCollisions();
+        checkMainLaserCollisions();
+        checkEnemyLaserCollisions();
+    }
+
+    private void checkMainLaserCollisions(){
+        //Check if laser hits enemy
+        int lasLen = mainShipLasers.size();
+        int enLen = enemies.size();
+
+        for(int i = 0; i < lasLen; i++){
+            MainLaser laser = mainShipLasers.get(i);
+            for(int j = 0; j < enLen; j++){
+                Enemy enemy = enemies.get(j);
+                if(laser.bounds.overlaps(enemy.bounds)){
+                    //Remove laser and Enemy ship if hp = 0
+                    listener.hit();
+                    laser.hitEnemy();
+                    enemy.hit();
+                }
+            }
+        }
+    }
+
+    private void checkEnemyLaserCollisions(){
+
     }
 
     //If collide with powerup, give ship power and remove power orb

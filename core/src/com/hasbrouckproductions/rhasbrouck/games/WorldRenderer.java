@@ -47,6 +47,7 @@ public class WorldRenderer {
         batch.enableBlending();
         batch.begin();
         renderShip();
+        renderMainShipFire();
         renderEnemies();
         renderPowerUps();
         batch.end();
@@ -69,6 +70,12 @@ public class WorldRenderer {
                 keyFrame = Assets.mainShip;
         }
         batch.draw(keyFrame, world.ship.xPos, world.ship.yPos, 100, 100);
+    }
+
+    private void renderMainShipFire(){
+        for(MainLaser laser : world.mainShipLasers){
+            batch.draw(Assets.mainLaser, laser.xPos, laser.yPos, 50, 10);
+        }
     }
 
     private void renderEnemies () {
