@@ -10,6 +10,9 @@ import javafx.scene.text.Font;
 
 /**
  * Created by hasbrouckr on 6/10/2016.
+ *
+ * This Class holds all the assets for the game
+ *
  */
 public class Assets {
 

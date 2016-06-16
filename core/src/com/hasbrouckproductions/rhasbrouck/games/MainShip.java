@@ -4,12 +4,16 @@ import com.badlogic.gdx.math.Rectangle;
 
 /**
  * Created by hasbrouckr on 6/10/2016.
+ *
+ * This class holds all the attributes for
+ * the main player ship
+ *
+ *
  */
 public class MainShip extends DynamicGameObject {
     public static final int SHIP_STATE_ALIVE = 1;
     public static final int SHIP_STATE_POWERUP = 2;
-    public static final int SHIP_STATE_HIT = 3;
-    public static final int SHIP_DEAD = 4;
+    public static final int SHIP_DEAD = 3;
 
     public static final float SHIP_WIDTH = 100;
     public static final float SHIP_HEIGHT = 100;
@@ -25,6 +29,7 @@ public class MainShip extends DynamicGameObject {
         state = SHIP_STATE_ALIVE;
     }
 
+    //update ships position
     public void update (float deltaTime, float x, float y) {
         xPos = x;
         yPos = y;
@@ -32,6 +37,7 @@ public class MainShip extends DynamicGameObject {
         stateTime += deltaTime;
     }
 
+    //updates ship status when geting hit
     public void gotHit () {
         velocity.set(0, 0);
         if(this.state == SHIP_STATE_ALIVE) {
@@ -43,6 +49,7 @@ public class MainShip extends DynamicGameObject {
         stateTime = 0;
     }
 
+    //Gets power up
     public void gotPower(){
         state = SHIP_STATE_POWERUP;
     }

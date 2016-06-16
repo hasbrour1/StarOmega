@@ -63,9 +63,6 @@ public class WorldRenderer {
             case MainShip.SHIP_DEAD:
                 keyFrame = Assets.explosion;
                 break;
-            case MainShip.SHIP_STATE_HIT:
-                keyFrame = Assets.shipHit;
-                break;
             default:
                 keyFrame = Assets.mainShip;
         }

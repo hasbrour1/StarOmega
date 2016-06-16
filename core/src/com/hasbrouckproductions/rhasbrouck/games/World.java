@@ -78,20 +78,20 @@ public class World {
         updateEnemies(deltaTime);
         updatePowerUps(deltaTime);
         updateMainShipFire(deltaTime);
-        if (ship.state != ship.SHIP_STATE_HIT) checkCollisions();
+        if (ship.state != ship.SHIP_DEAD) checkCollisions();
         checkGameOver();
     }
 
     //Updates ship position if not touched
     private void updateShip(float deltaTime){
-        if (ship.state != ship.SHIP_STATE_HIT) {
+        if (ship.state != ship.SHIP_DEAD) {
             ship.update(deltaTime, ship.xPos, ship.yPos);
         }
     }
 
     //update ship position if touched
     public void updateShip(float deltaTime, float x, float y) {
-        if (ship.state != ship.SHIP_STATE_HIT) {
+        if (ship.state != ship.SHIP_DEAD) {
             ship.update(deltaTime, x, y);
         }
     }
@@ -206,6 +206,10 @@ public class World {
             Enemy enemy = enemies.get(i);
             if (ship.bounds.overlaps(enemy.bounds)) {
                 ship.gotHit();
+
+                //TODO: show explosion animation
+                enemies.remove(i);
+                len--;
             }
         }
     }
