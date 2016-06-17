@@ -61,19 +61,19 @@ public class World {
 
         switch (currentLevel){
             case 1:
-                Gdx.app.log("LEVEL ONE", "ENTERED LEVEL ONE " + currentLevel);
                 level = new LevelOne();
                 enemies = level.getEnemies();
                 powerUps = level.getPowerUps();
                 break;
             case 2:
-                Gdx.app.log("LEVEL TWO", "ENTERED LEVEL TWO " + currentLevel);
                 level = new LevelTwo();
                 enemies = level.getEnemies();
                 powerUps = level.getPowerUps();
                 break;
             default:
-                Gdx.app.log("LEVEL DEFAULT", "ENTERED LEVEL DEFAULT " + currentLevel);
+                level = new DefaultLevel();
+                enemies = level.getEnemies();
+                powerUps = level.getPowerUps();
                 break;
         }
 
