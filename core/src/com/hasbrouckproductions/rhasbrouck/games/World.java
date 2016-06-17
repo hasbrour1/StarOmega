@@ -33,8 +33,8 @@ public class World {
     public static final int WORLD_STATE_GAME_OVER = 2;
 
     public final MainShip ship;
-    public final ArrayList<Enemy> enemies;
-    public final ArrayList<PowerUps> powerUps;
+    public ArrayList<Enemy> enemies;
+    public ArrayList<PowerUps> powerUps;
     public final ArrayList<MainLaser> mainShipLasers;
     public final WorldListener listener;
     public final Random rand;
@@ -42,34 +42,39 @@ public class World {
     public int score;
     public int state;
 
-    public World(WorldListener listener) {
+    private GenericLevel level;
+
+    public World(WorldListener listener, int currentLevel) {
         this.ship = new MainShip(5, 1);
         this.enemies = new ArrayList<Enemy>();
         this.powerUps = new ArrayList<PowerUps>();
         this.mainShipLasers = new ArrayList<MainLaser>();
         this.listener = listener;
         rand = new Random();
-        generateLevel();
+        generateLevel(currentLevel);
 
         this.score = 0;
         this.state = WORLD_STATE_RUNNING;
     }
 
-    private void generateLevel() {
+    private void generateLevel(int currentLevel) {
 
-        //For now create 5 enemies and 1 power up
-        enemies.add(new Enemy(800, 100));
-        enemies.add(new Enemy(800 * 2, 50));
-        enemies.add(new Enemy(830 * 2, 200));
-        enemies.add(new Enemy(800 * 3 + 100, 100));
-        enemies.add(new Enemy(800 * 3, 300));
+        switch (currentLevel){
+            case 1:
+                level = new LevelOne();
+                enemies = level.getEnemies();
+                powerUps = level.getPowerUps();
+                break;
+            case 2:
+                level = new LevelTwo();
+                enemies = level.getEnemies();
+                powerUps = level.getPowerUps();
+                break;
+            default:
+                break;
+        }
 
-        //generate 1 power up randomly in world
-        Random rand = new Random();
-        int powerX = rand.nextInt((int)WORLD_WIDTH - 850) + 850;
-        int powerY = rand.nextInt((int)WORLD_HEIGHT - 80) + 80;
-        Gdx.app.log("POWER UP Creation",  powerX+ " " + powerY);
-        powerUps.add(new PowerUps(powerX, powerY));
+
     }
 
     //Update each object

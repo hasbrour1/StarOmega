@@ -48,6 +48,7 @@ public class GameScreen extends ScreenAdapter {
         this.game = game;
 
         state = GAME_READY;
+        level = 1;
         guiCam = new OrthographicCamera();
         guiCam.setToOrtho(false, 800, 480);
         touchPoint = new Vector3();
@@ -65,14 +66,13 @@ public class GameScreen extends ScreenAdapter {
             @Override
             public void power() {Assets.playSound(Assets.hitSound);}
         };
-        world = new World(worldListener);
+        world = new World(worldListener, level);
         renderer = new WorldRenderer(game.batch, world);
         pauseBounds = new Rectangle(320 - 64, 480 - 64, 64, 64);
         resumeBounds = new Rectangle(160 - 96, 240, 192, 36);
         quitBounds = new Rectangle(160 - 96, 240 - 36, 192, 36);
         lastScore = 0;
         scoreString = "SCORE: 0";
-        level = 1;
     }
 
     public void update (float deltaTime) {
@@ -171,7 +171,7 @@ public class GameScreen extends ScreenAdapter {
     private void updateLevelEnd () {
         level++;
         if (Gdx.input.justTouched()) {
-            world = new World(worldListener);
+            world = new World(worldListener, level);
             renderer = new WorldRenderer(game.batch, world);
             world.score = lastScore;
             state = GAME_READY;
