@@ -80,17 +80,14 @@ public class WorldRenderer {
         int len = world.enemies.size();
         for (int i = 0; i < len; i++) {
             Enemy enemy = world.enemies.get(i);
-            Gdx.app.log("ENEMY SHIP", + enemy.xPos + " " + enemy.yPos + " " + i);
             batch.draw(Assets.enemyShip, enemy.xPos, enemy.yPos, 70, 70);
         }
     }
 
     private void renderPowerUps () {
         int len = world.powerUps.size();
-        Gdx.app.log("POWER UP ",  "Rendering Power Ups");
         for (int i = 0; i < len; i++) {
             PowerUps power = world.powerUps.get(i);
-            Gdx.app.log("POWER UP ",  power.xPos + " " + power.yPos);
             batch.draw(Assets.powerUp, power.xPos, power.yPos, 70, 70);
         }
     }

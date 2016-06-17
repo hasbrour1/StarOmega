@@ -57,27 +57,30 @@ public class World {
         this.state = WORLD_STATE_RUNNING;
     }
 
-    private void generateLevel(int currentLevel) {
 
+    //Generate level enemies and powerups according to
+    //currentLevel
+    private void generateLevel(int currentLevel) {
         switch (currentLevel){
             case 1:
                 level = new LevelOne();
-                enemies = level.getEnemies();
-                powerUps = level.getPowerUps();
+                levelBuild();
                 break;
             case 2:
                 level = new LevelTwo();
-                enemies = level.getEnemies();
-                powerUps = level.getPowerUps();
+                levelBuild();
                 break;
             default:
                 level = new DefaultLevel();
-                enemies = level.getEnemies();
-                powerUps = level.getPowerUps();
+                levelBuild();
                 break;
         }
+    }
 
-
+    //Assign current enemies and powerUps
+    private void levelBuild(){
+        enemies = level.getEnemies();
+        powerUps = level.getPowerUps();
     }
 
     //Update each object
@@ -156,7 +159,6 @@ public class World {
     private void updatePowerUps(float deltaTime) {
         int len = powerUps.size();
         for (int i = 0; i < len; i++) {
-            Gdx.app.log("POWER UP ",  "Updating Power");
             PowerUps power = powerUps.get(i);
             power.update(deltaTime);
 

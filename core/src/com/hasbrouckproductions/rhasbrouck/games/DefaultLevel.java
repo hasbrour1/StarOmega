@@ -40,7 +40,6 @@ public class DefaultLevel extends GenericLevel {
         Random rand = new Random();
         int powerX = rand.nextInt((int)World.WORLD_WIDTH - 850) + 850;
         int powerY = rand.nextInt((int)World.WORLD_HEIGHT - 80) + 80;
-        Gdx.app.log("POWER UP Creation",  powerX+ " " + powerY);
         powerUps.add(new PowerUps(powerX, powerY));
     }
 }
