@@ -61,16 +61,19 @@ public class World {
 
         switch (currentLevel){
             case 1:
+                Gdx.app.log("LEVEL ONE", "ENTERED LEVEL ONE " + currentLevel);
                 level = new LevelOne();
                 enemies = level.getEnemies();
                 powerUps = level.getPowerUps();
                 break;
             case 2:
+                Gdx.app.log("LEVEL TWO", "ENTERED LEVEL TWO " + currentLevel);
                 level = new LevelTwo();
                 enemies = level.getEnemies();
                 powerUps = level.getPowerUps();
                 break;
             default:
+                Gdx.app.log("LEVEL DEFAULT", "ENTERED LEVEL DEFAULT " + currentLevel);
                 break;
         }
 
@@ -137,7 +140,12 @@ public class World {
         for (int i = 0; i < len; i++) {
             Enemy enemy = enemies.get(i);
             enemy.update(deltaTime);
-            if(enemy.state == Enemy.ENEMY_IS_DEAD || enemy.xPos <= -50){
+            if(enemy.state == Enemy.ENEMY_IS_DEAD){
+                score += 10;
+                enemies.remove(i);
+                len --;
+            }
+            if(enemy.xPos <= -50){
                 enemies.remove(i);
                 len --;
             }

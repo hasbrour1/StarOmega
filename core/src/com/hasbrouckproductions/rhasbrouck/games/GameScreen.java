@@ -146,6 +146,8 @@ public class GameScreen extends ScreenAdapter {
 
         //if enemy array is empty then level is complete
         if(world.enemies.isEmpty()){
+            level++;
+            world.score += 100;
             state = GAME_LEVEL_END;
         }
     }
@@ -169,7 +171,6 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void updateLevelEnd () {
-        level++;
         if (Gdx.input.justTouched()) {
             world = new World(worldListener, level);
             renderer = new WorldRenderer(game.batch, world);
