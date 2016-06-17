@@ -1,5 +1,6 @@
 package com.hasbrouckproductions.rhasbrouck.games;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
 
 /**
@@ -31,8 +32,20 @@ public class MainShip extends DynamicGameObject {
 
     //update ships position
     public void update (float deltaTime, float x, float y) {
-        xPos = x;
-        yPos = y;
+
+        //Move ship closer to touch point
+        if(xPos > x && xPos + 50 >= x){
+            xPos -= 200 * Gdx.graphics.getDeltaTime();
+        }else if(xPos < x && xPos + 50 <= x){
+            xPos += 200 * Gdx.graphics.getDeltaTime();
+        }
+
+        if(yPos > y && yPos + 50 >= y){
+            yPos -= 200 * Gdx.graphics.getDeltaTime();
+        }else if(yPos < y && yPos + 50 <= y){
+            yPos += 200 * Gdx.graphics.getDeltaTime();
+        }
+
         this.bounds = new Rectangle(xPos, yPos, SHIP_WIDTH, SHIP_HEIGHT);
         stateTime += deltaTime;
     }

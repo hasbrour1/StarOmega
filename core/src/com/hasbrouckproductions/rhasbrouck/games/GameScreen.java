@@ -225,7 +225,7 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void presentPaused () {
-        game.batch.draw(Assets.pauseMenu, 160 - 192 / 2, 240 - 96 / 2, 192, 96);
+        game.batch.draw(Assets.pauseMenu, 400 - (160/2), 240 - (40/2), 160, 40);
         Assets.font.draw(game.batch, scoreString, 16, 480 - 20);
     }
 
