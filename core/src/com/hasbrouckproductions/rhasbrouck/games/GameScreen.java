@@ -216,7 +216,7 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void presentReady () {
-        game.batch.draw(Assets.ready, 160 - 192 / 2, 240 - 32 / 2, 192, 32);
+        game.batch.draw(Assets.ready, 320 - 64, 480 - 64, 102, 40);
     }
 
     private void presentRunning () {
