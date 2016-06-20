@@ -17,7 +17,6 @@ public class EnemyMainFire extends DynamicGameObject {
 
     public float xPos;
     public float yPos;
-    public static float lastFireTime;
     public int state;
 
 
@@ -26,7 +25,6 @@ public class EnemyMainFire extends DynamicGameObject {
         xPos = x;
         yPos = y;
         state = LASER_NOT_HIT;
-        lastFireTime = TimeUtils.nanoTime();
     }
 
     //update laser position

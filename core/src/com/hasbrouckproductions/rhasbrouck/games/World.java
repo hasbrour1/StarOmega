@@ -144,8 +144,9 @@ public class World {
         //Check to add enemy Laser
         for(Enemy enemy: enemies) {
             if(enemy.xPos < 800) {
-                if (TimeUtils.nanoTime() - EnemyMainFire.lastFireTime > 1000000000) {
+                if (TimeUtils.nanoTime() - enemy.lastFireTime > 1000000000 * 2) {
                     listener.shoot();
+                    enemy.updateFireTime();
                     enemyShipLasers.add(new EnemyMainFire(enemy.xPos - 100, enemy.yPos + 35));
                 }
             }

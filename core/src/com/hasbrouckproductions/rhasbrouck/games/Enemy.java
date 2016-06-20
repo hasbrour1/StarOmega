@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.TimeUtils;
 
 import java.util.Random;
 
@@ -21,6 +22,8 @@ public class Enemy extends DynamicGameObject{
     public float xPos;
     public float yPos;
 
+    public float lastFireTime;
+
 
     public int state;
     public int hp;
@@ -31,6 +34,7 @@ public class Enemy extends DynamicGameObject{
         xPos = x;
         yPos = y;
         generateHp();
+        lastFireTime = TimeUtils.nanoTime();
         state = ENEMY_IS_ALIVE;
     }
 
@@ -43,6 +47,10 @@ public class Enemy extends DynamicGameObject{
         this.bounds = new Rectangle(xPos, yPos, ENEMY_WIDTH, ENEMY_HEIGHT);
         xPos -= 100 * Gdx.graphics.getDeltaTime();
         stateTime += deltaTime;
+    }
+
+    public void updateFireTime(){
+        lastFireTime = TimeUtils.nanoTime();
     }
 
     public void hit(){
