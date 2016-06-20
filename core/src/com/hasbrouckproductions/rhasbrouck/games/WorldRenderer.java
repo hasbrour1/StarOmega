@@ -48,6 +48,7 @@ public class WorldRenderer {
         batch.begin();
         renderShip();
         renderMainShipFire();
+        renderEnemyFire();
         renderEnemies();
         renderPowerUps();
         batch.end();
@@ -71,6 +72,12 @@ public class WorldRenderer {
 
     private void renderMainShipFire(){
         for(MainLaser laser : world.mainShipLasers){
+            batch.draw(Assets.mainLaser, laser.xPos, laser.yPos, 50, 10);
+        }
+    }
+
+    private void renderEnemyFire(){
+        for(EnemyMainFire laser : world.enemyShipLasers){
             batch.draw(Assets.mainLaser, laser.xPos, laser.yPos, 50, 10);
         }
     }

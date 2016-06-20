@@ -36,6 +36,7 @@ public class World {
     public ArrayList<Enemy> enemies;
     public ArrayList<PowerUps> powerUps;
     public final ArrayList<MainLaser> mainShipLasers;
+    public final ArrayList<EnemyMainFire> enemyShipLasers;
     public final WorldListener listener;
     public final Random rand;
 
@@ -49,6 +50,7 @@ public class World {
         this.enemies = new ArrayList<Enemy>();
         this.powerUps = new ArrayList<PowerUps>();
         this.mainShipLasers = new ArrayList<MainLaser>();
+        this.enemyShipLasers = new ArrayList<EnemyMainFire>();
         this.listener = listener;
         rand = new Random();
         generateLevel(currentLevel);
@@ -89,6 +91,7 @@ public class World {
         updateEnemies(deltaTime);
         updatePowerUps(deltaTime);
         updateMainShipFire(deltaTime);
+        updateEnemyFire();
         if (ship.state != ship.SHIP_DEAD) checkCollisions();
         checkGameOver();
     }
@@ -134,6 +137,23 @@ public class World {
                 mainShipLasers.remove(i);
                 len --;
             }
+        }
+    }
+
+    public void updateEnemyFire(){
+        //Check to add enemy Laser
+        for(Enemy enemy: enemies) {
+            if(enemy.xPos < 800) {
+                if (TimeUtils.nanoTime() - EnemyMainFire.lastFireTime > 1000000000) {
+                    listener.shoot();
+                    enemyShipLasers.add(new EnemyMainFire(enemy.xPos - 100, enemy.yPos + 35));
+                }
+            }
+        }
+
+        //Update Enemy Laser Positions
+        for(EnemyMainFire laser : enemyShipLasers){
+            laser.update();
         }
     }
 
@@ -199,7 +219,16 @@ public class World {
 
     //Check if enemy lasers hit main ship
     private void checkEnemyLaserCollisions(){
-
+        int len = enemyShipLasers.size();
+        for(int i = 0; i < len; i++){
+            EnemyMainFire laser = enemyShipLasers.get(i);
+            if(laser.bounds.overlaps(ship.bounds)){
+                enemyShipLasers.remove(i);
+                len--;
+                ship.gotHit();
+                listener.hit();
+            }
+        }
     }
 
     //If collide with powerup, give ship power and remove power orb
