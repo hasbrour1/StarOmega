@@ -19,6 +19,8 @@ public class MainShip extends DynamicGameObject {
     public static final float SHIP_WIDTH = 100;
     public static final float SHIP_HEIGHT = 100;
 
+    public static final int SHIP_SPEED = 300;
+
     public static float xPos;
     public static float yPos;
     int state;
@@ -35,15 +37,15 @@ public class MainShip extends DynamicGameObject {
 
         //Move ship closer to touch point
         if(xPos > x && xPos + 50 >= x){
-            xPos -= 200 * Gdx.graphics.getDeltaTime();
+            xPos -= SHIP_SPEED * Gdx.graphics.getDeltaTime();
         }else if(xPos < x && xPos + 50 <= x){
-            xPos += 200 * Gdx.graphics.getDeltaTime();
+            xPos += SHIP_SPEED * Gdx.graphics.getDeltaTime();
         }
 
         if(yPos > y && yPos + 50 >= y){
-            yPos -= 200 * Gdx.graphics.getDeltaTime();
+            yPos -= SHIP_SPEED * Gdx.graphics.getDeltaTime();
         }else if(yPos < y && yPos + 50 <= y){
-            yPos += 200 * Gdx.graphics.getDeltaTime();
+            yPos += SHIP_SPEED * Gdx.graphics.getDeltaTime();
         }
 
         this.bounds = new Rectangle(xPos, yPos, SHIP_WIDTH, SHIP_HEIGHT);
