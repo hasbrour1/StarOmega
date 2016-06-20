@@ -23,15 +23,13 @@ public class DefaultLevel extends GenericLevel {
     void generateEnemies() {
 
         Random rand = new Random();
-        int iteration = rand.nextInt(20 - 5) + 5;
+        int iteration = rand.nextInt(30 - 10) + 10;
 
         for(int i = 0; i < iteration; i++){
             int randX = rand.nextInt(10 - 1) + 1;
             int randY = rand.nextInt(350 - 50) + 50;
             enemies.add(new Enemy(800 * randX, randY));
         }
-
-        enemies.add(new Enemy(800 * 3, 300));
     }
 
     @Override
