@@ -21,12 +21,14 @@ public class WorldRenderer {
     World world;
     OrthographicCamera cam;
     SpriteBatch batch;
+    float stateTime;
 
     public WorldRenderer (SpriteBatch batch, World world) {
         this.world = world;
         cam = new OrthographicCamera();
         cam.setToOrtho(false, 800, 480);
         this.batch = batch;
+        stateTime = 0f;
     }
 
     public void render () {
@@ -62,7 +64,8 @@ public class WorldRenderer {
                 keyFrame = Assets.mainShip;
                 break;
             case MainShip.SHIP_DEAD:
-                keyFrame = Assets.explosion;
+                stateTime += Gdx.graphics.getDeltaTime();
+                keyFrame = Assets.explosionAnimation.getKeyFrame(stateTime, false);
                 break;
             default:
                 keyFrame = Assets.mainShip;

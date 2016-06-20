@@ -3,7 +3,9 @@ package com.hasbrouckproductions.rhasbrouck.games;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import javafx.scene.text.Font;
@@ -31,7 +33,6 @@ public class Assets {
 
     public static TextureRegion mainShip;
     public static Texture enemyShip;
-    public static TextureRegion explosion;
     public static TextureRegion shipHit;
 
 
@@ -40,6 +41,10 @@ public class Assets {
     public static Sound hitSound;
 
     public static BitmapFont font;
+
+    public static Animation explosionAnimation;
+    public static Texture explosion;
+    public static TextureRegion[] explosionFrames;
 
     public static void load(){
 
@@ -57,7 +62,6 @@ public class Assets {
 
         mainShip = new TextureRegion(new Texture(Gdx.files.internal("data/img/mainShipScaled.png")), 0,0, 100, 100);
         enemyShip = new Texture(Gdx.files.internal("data/img/enemyShipScaled.png"));
-        explosion = new TextureRegion(new Texture(Gdx.files.internal("data/img/explosion.png")), 0,0, 50, 50);
         shipHit = new TextureRegion(new Texture(Gdx.files.internal("data/img/explosion.png")), 0,0, 50, 50);
 
         clickSound = Gdx.audio.newSound(Gdx.files.internal("data/sound/clickSound.wav"));
@@ -66,6 +70,19 @@ public class Assets {
 
         font = new BitmapFont(Gdx.files.internal("data/fonts/mainFont.fnt"),
                 Gdx.files.internal("data/fonts/mainFont.png"),false);
+
+        //Configure Explosion Animation
+        explosion = new Texture(Gdx.files.internal("data/img/explosionEdit.png"));
+        TextureRegion[][] tmp = TextureRegion.split(explosion, explosion.getWidth()/3, explosion.getHeight() / 2);
+        explosionFrames = new TextureRegion[3 * 2];
+        int index = 0;
+        for(int i = 0; i < 2; i++){
+            for(int j = 0; j < 3; j++){
+                explosionFrames[index++] = tmp[i][j];
+            }
+        }
+
+        explosionAnimation = new Animation(0.025f, explosionFrames);
 
     }
 
