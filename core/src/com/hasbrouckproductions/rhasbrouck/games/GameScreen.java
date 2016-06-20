@@ -231,7 +231,7 @@ public class GameScreen extends ScreenAdapter {
 
     private void presentLevelEnd () {
         Assets.font.draw(game.batch, glyphLayout, 160 - glyphLayout.width / 2, 480 - 40);
-        glyphLayout.setText(Assets.font, "Level Complete!");
+        glyphLayout.setText(Assets.font, "Level " + (level - 1) + " Complete!");
         Assets.font.draw(game.batch, glyphLayout, 160 - glyphLayout.width / 2, 40);
     }
 

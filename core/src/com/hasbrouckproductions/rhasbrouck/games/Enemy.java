@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
+import java.util.Random;
+
 /**
  * Created by hasbrouckr on 6/10/2016.
  */
@@ -28,8 +30,13 @@ public class Enemy extends DynamicGameObject{
         super(x, y, ENEMY_WIDTH, ENEMY_HEIGHT);
         xPos = x;
         yPos = y;
-        hp = 1;
+        generateHp();
         state = ENEMY_IS_ALIVE;
+    }
+
+    private void generateHp(){
+        Random rand =  new Random();
+        hp = rand.nextInt(5 - 1) + 1;
     }
 
     public void update(float deltaTime){
