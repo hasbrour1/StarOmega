@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g3d.shaders.BaseShader;
 import com.badlogic.gdx.math.Rectangle;
 
 /**
@@ -42,10 +43,11 @@ public class HighscoresScreen extends ScreenAdapter {
 
         game.batch.begin();
         Assets.font.draw(game.batch, "High Scores:", 200, 360);
-        Assets.font.draw(game.batch, "1.", 200, 330);
-        Assets.font.draw(game.batch, "2.", 200, 300);
-        Assets.font.draw(game.batch, "3.", 200, 270);
-        Assets.font.draw(game.batch, "4.", 200, 230);
+        Assets.font.draw(game.batch, "1." + Settings.highScores[0], 200, 330);
+        Assets.font.draw(game.batch, "2." + Settings.highScores[1], 200, 300);
+        Assets.font.draw(game.batch, "3." + Settings.highScores[2], 200, 270);
+        Assets.font.draw(game.batch, "4." + Settings.highScores[3], 200, 230);
+        Assets.font.draw(game.batch, "5." + Settings.highScores[4], 200, 190);
         game.batch.end();
     }
 

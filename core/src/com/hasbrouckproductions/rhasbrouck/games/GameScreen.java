@@ -136,11 +136,10 @@ public class GameScreen extends ScreenAdapter {
         }
         if (world.state == World.WORLD_STATE_GAME_OVER) {
             state = GAME_OVER;
-            if (lastScore >= Settings.highScore)
+            if (Settings.addHighScore(lastScore))
                 scoreString = "NEW HIGHSCORE: " + lastScore;
             else
                 scoreString = "SCORE: " + lastScore;
-            Settings.addHighScore(lastScore);
             Settings.save();
         }
 
