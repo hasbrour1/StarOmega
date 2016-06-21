@@ -69,8 +69,8 @@ public class GameScreen extends ScreenAdapter {
         world = new World(worldListener, level);
         renderer = new WorldRenderer(game.batch, world);
         pauseBounds = new Rectangle(320 - 64, 480 - 64, 64, 64);
-        resumeBounds = new Rectangle(160 - 96, 240, 192, 36);
-        quitBounds = new Rectangle(160 - 96, 240 - 36, 192, 36);
+        resumeBounds = new Rectangle(200 - (160/2), 240 - (40/2), 120, 40);
+        quitBounds = new Rectangle(600 - (160/2), 240 - (40/2), 147, 40);
         lastScore = 0;
         scoreString = "SCORE: 0";
     }
@@ -225,7 +225,8 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void presentPaused () {
-        game.batch.draw(Assets.pauseMenu, 400 - (160/2), 240 - (40/2), 160, 40);
+        game.batch.draw(Assets.quitButton, 600 - (160/2), 240 - (40/2), 147, 40);
+        game.batch.draw(Assets.resumeButton, 200 - (160/2), 240 - (40/2), 120, 40);
         Assets.font.draw(game.batch, scoreString, 16, 480 - 20);
     }
 

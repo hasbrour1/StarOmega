@@ -25,10 +25,11 @@ public class Assets {
     public static Texture helpButton;
     public static Texture ready;
     public static Texture pause;
-    public static Texture pauseMenu;
     public static Texture gameOver;
     public static Texture powerUp;
     public static Texture mainLaser;
+    public static Texture quitButton;
+    public static Texture resumeButton;
 
 
     public static TextureRegion mainShip;
@@ -55,10 +56,11 @@ public class Assets {
         helpButton = new Texture(Gdx.files.internal("data/img/help.png"));
         ready = new Texture(Gdx.files.internal("data/img/ready.png"));
         pause = new Texture(Gdx.files.internal("data/img/pause.png"));
-        pauseMenu = new Texture(Gdx.files.internal("data/img/pauseMenu.png"));
         gameOver = new Texture(Gdx.files.internal("data/img/gameOver.png"));
         powerUp = new Texture(Gdx.files.internal("data/img/powerUp.png"));
         mainLaser = new Texture(Gdx.files.internal("data/img/mainLaser.png"));
+        quitButton = new Texture(Gdx.files.internal("data/img/quit.png"));
+        resumeButton = new Texture(Gdx.files.internal("data/img/resume.png"));
 
         mainShip = new TextureRegion(new Texture(Gdx.files.internal("data/img/mainShipScaled.png")), 0,0, 100, 100);
         enemyShip = new Texture(Gdx.files.internal("data/img/enemyShipScaled.png"));
