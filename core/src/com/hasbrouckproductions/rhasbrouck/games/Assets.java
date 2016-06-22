@@ -75,7 +75,7 @@ public class Assets {
 
         //Configure Explosion Animation
         explosion = new Texture(Gdx.files.internal("data/img/explosionEdit.png"));
-        TextureRegion[][] tmp = TextureRegion.split(explosion, explosion.getWidth()/3, explosion.getHeight() / 2);
+        TextureRegion[][] tmp = TextureRegion.split(explosion, explosion.getWidth()/3, explosion.getHeight() / 2 - 10);
         explosionFrames = new TextureRegion[3 * 2];
         int index = 0;
         for(int i = 0; i < 2; i++){
