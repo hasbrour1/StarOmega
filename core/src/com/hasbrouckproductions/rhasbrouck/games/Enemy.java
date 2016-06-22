@@ -40,7 +40,7 @@ public class Enemy extends DynamicGameObject{
 
     private void generateHp(){
         Random rand =  new Random();
-        hp = rand.nextInt(5 - 1) + 1;
+        hp = rand.nextInt(3 - 1) + 1;
     }
 
     public void update(float deltaTime){
