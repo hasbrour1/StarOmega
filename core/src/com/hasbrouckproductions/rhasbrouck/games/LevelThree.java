@@ -31,15 +31,4 @@ public class LevelThree extends GenericLevel {
         enemies.add(new Enemy(800 * 4 + 100, 100));
         enemies.add(new Enemy(800 * 4 + 50, 175));
     }
-
-    @Override
-    void generatePowerUps() {
-        //generate 1 power up randomly in world
-        Random rand = new Random();
-        int powerX = rand.nextInt((int)World.WORLD_WIDTH - 850) + 850;
-        int powerY = rand.nextInt((int)World.WORLD_HEIGHT - 80) + 80;
-        Gdx.app.log("POWER UP Creation",  powerX+ " " + powerY);
-        powerUps.add(new PowerUps(powerX, powerY));
-    }
-
 }
