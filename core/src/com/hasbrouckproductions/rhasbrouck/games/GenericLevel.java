@@ -15,6 +15,8 @@ public abstract class GenericLevel{
     public GenericLevel(){
         enemies = new ArrayList<Enemy>();
         powerUps = new ArrayList<PowerUps>();
+        generateEnemies();
+        generatePowerUps();
     }
 
     abstract void generateEnemies();

@@ -9,12 +9,6 @@ import java.util.Random;
  */
 public class LevelThree extends GenericLevel {
 
-    public LevelThree(){
-        super();
-        generateEnemies();
-        generatePowerUps();
-    }
-
     @Override
     void generateEnemies() {
         enemies.add(new Enemy(800, 100));
