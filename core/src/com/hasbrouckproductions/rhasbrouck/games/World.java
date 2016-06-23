@@ -34,6 +34,7 @@ public class World {
 
     public final MainShip ship;
     public ArrayList<Enemy> enemies;
+    public Boss boss;
     public ArrayList<PowerUps> powerUps;
     public final ArrayList<MainLaser> mainShipLasers;
     public final ArrayList<EnemyMainFire> enemyShipLasers;
@@ -86,6 +87,7 @@ public class World {
     private void levelBuild(){
         enemies = level.getEnemies();
         powerUps = level.getPowerUps();
+        boss = level.getBoss();
     }
 
     //Update each object

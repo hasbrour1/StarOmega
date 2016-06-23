@@ -14,6 +14,7 @@ public abstract class GenericLevel{
 
     public ArrayList<Enemy> enemies;
     public ArrayList<PowerUps> powerUps;
+    public Boss boss;
 
     public GenericLevel(){
         enemies = new ArrayList<Enemy>();
@@ -23,6 +24,8 @@ public abstract class GenericLevel{
     }
 
     abstract void generateEnemies();
+
+    abstract void generateBoss();
 
     private void generatePowerUps(){
         //generate 1 power up randomly in world
@@ -39,5 +42,9 @@ public abstract class GenericLevel{
 
     public ArrayList<PowerUps> getPowerUps() {
         return powerUps;
+    }
+
+    public Boss getBoss(){
+        return boss;
     }
 }

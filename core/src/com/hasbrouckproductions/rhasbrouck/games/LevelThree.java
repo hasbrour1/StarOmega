@@ -31,4 +31,9 @@ public class LevelThree extends GenericLevel {
         enemies.add(new Enemy(800 * 4 + 100, 100));
         enemies.add(new Enemy(800 * 4 + 50, 175));
     }
+
+    @Override
+    void generateBoss() {
+        boss = new FirstBoss(800 * 5, 150);
+    }
 }

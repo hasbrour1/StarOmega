@@ -25,4 +25,9 @@ public class DefaultLevel extends GenericLevel {
             enemies.add(new Enemy(800 * randX, randY));
         }
     }
+
+    @Override
+    void generateBoss() {
+        boss = new FirstBoss(800 * 5, 150);
+    }
 }
