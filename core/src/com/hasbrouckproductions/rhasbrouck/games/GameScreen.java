@@ -144,7 +144,7 @@ public class GameScreen extends ScreenAdapter {
         }
 
         //if enemy array is empty then level is complete
-        if(world.enemies.isEmpty()){
+        if(world.enemies.isEmpty() && (world.boss.state == Boss.BOSS_IS_DEAD)){
             level++;
             world.score += 100;
             state = GAME_LEVEL_END;

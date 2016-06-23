@@ -53,6 +53,7 @@ public class WorldRenderer {
         renderEnemyFire();
         renderEnemies();
         renderPowerUps();
+        renderBoss();
         batch.end();
     }
 

@@ -96,6 +96,7 @@ public class World {
         updateEnemies(deltaTime);
         updatePowerUps(deltaTime);
         updateMainShipFire(deltaTime);
+        updateBoss(deltaTime);
         updateEnemyFire();
         if (ship.state != ship.SHIP_DEAD) checkCollisions();
         checkGameOver();
@@ -195,12 +196,18 @@ public class World {
         }
     }
 
+    private void updateBoss(float deltaTime){
+        boss.update(deltaTime, this);
+        if(boss.state == Boss.BOSS_IS_DEAD) score += 100;
+    }
+
     //Check main ship collisions with each object
     private void checkCollisions() {
         checkPowerUpCollisions();
         checkEnemyCollisions();
         checkMainLaserCollisions();
         checkEnemyLaserCollisions();
+        checkBossLaserCollisions();
     }
 
     //check if ship laser hits any enemies
@@ -236,6 +243,20 @@ public class World {
             }
         }
     }
+
+    private void checkBossLaserCollisions(){
+        int len = boss.bossLasers.size();
+        for(int i = 0; i < len; i++){
+            EnemyMainFire laser = boss.bossLasers.get(i);
+            if(laser.bounds.overlaps(ship.bounds)){
+                boss.bossLasers.remove(i);
+                len--;
+                ship.gotHit();
+                listener.hit();
+            }
+        }
+    }
+
 
     //If collide with powerup, give ship power and remove power orb
     private void checkPowerUpCollisions() {
