@@ -13,12 +13,6 @@ import java.util.Random;
  */
 public class DefaultLevel extends GenericLevel {
 
-    public DefaultLevel(){
-        super();
-        generateEnemies();
-        generatePowerUps();
-    }
-
     @Override
     void generateEnemies() {
 
@@ -30,14 +24,5 @@ public class DefaultLevel extends GenericLevel {
             int randY = rand.nextInt(350 - 50) + 50;
             enemies.add(new Enemy(800 * randX, randY));
         }
-    }
-
-    @Override
-    void generatePowerUps() {
-        //generate 1 power up randomly in world
-        Random rand = new Random();
-        int powerX = rand.nextInt((int)World.WORLD_WIDTH - 850) + 850;
-        int powerY = rand.nextInt((int)World.WORLD_HEIGHT - 80) + 80;
-        powerUps.add(new PowerUps(powerX, powerY));
     }
 }
