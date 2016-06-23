@@ -11,8 +11,8 @@ import java.util.Random;
  */
 public class FirstBoss extends Boss {
 
-    public static final float BOSS_WIDTH = 70;
-    public static final float BOSS_HEIGHT = 70;
+    public static final float BOSS_WIDTH = 300;
+    public static final float BOSS_HEIGHT = 300;
 
     public float lastUpperFireTime;
     public float lastLowerFireTime;
@@ -32,7 +32,7 @@ public class FirstBoss extends Boss {
     public void update(float deltaTime, World world){
         this.bounds = new Rectangle(xPos, yPos, BOSS_WIDTH, BOSS_HEIGHT);
 
-        if(xPos > 700) {
+        if(xPos > 600) {
             xPos -= 100 * Gdx.graphics.getDeltaTime();
         }
 

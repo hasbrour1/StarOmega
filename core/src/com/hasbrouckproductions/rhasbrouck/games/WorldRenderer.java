@@ -54,6 +54,7 @@ public class WorldRenderer {
         renderEnemies();
         renderPowerUps();
         renderBoss();
+        renderBossFire();
         batch.end();
     }
 
@@ -100,6 +101,18 @@ public class WorldRenderer {
         for (int i = 0; i < len; i++) {
             PowerUps power = world.powerUps.get(i);
             batch.draw(Assets.powerUp, power.xPos, power.yPos, 70, 70);
+        }
+    }
+
+    private void renderBoss(){
+        if(world.boss != null) {
+            batch.draw(Assets.enemyShip, world.boss.xPos, world.boss.yPos, 300, 300);
+        }
+    }
+
+    private void renderBossFire(){
+        for(EnemyMainFire laser : world.boss.bossLasers){
+            batch.draw(Assets.mainLaser, laser.xPos, laser.yPos, 50, 10);
         }
     }
 }

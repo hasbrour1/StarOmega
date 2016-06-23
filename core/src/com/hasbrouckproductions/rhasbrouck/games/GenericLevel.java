@@ -21,6 +21,7 @@ public abstract class GenericLevel{
         powerUps = new ArrayList<PowerUps>();
         generateEnemies();
         generatePowerUps();
+        generateBoss();
     }
 
     abstract void generateEnemies();

@@ -27,6 +27,7 @@ public abstract class Boss extends DynamicGameObject {
         super(x, y, BOSS_WIDTH, BOSS_HEIGHT);
         xPos = x;
         yPos = y;
+        bossLasers = new ArrayList<EnemyMainFire>();
         state = BOSS_IS_ALIVE;
     }
 
