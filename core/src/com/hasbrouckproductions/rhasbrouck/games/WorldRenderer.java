@@ -106,7 +106,7 @@ public class WorldRenderer {
 
     private void renderBoss(){
         if(world.boss.state != Boss.BOSS_IS_DEAD) {
-            batch.draw(Assets.enemyShip, world.boss.xPos, world.boss.yPos, 300, 300);
+            batch.draw(Assets.enemyShip, world.boss.xPos, world.boss.yPos, world.boss.bossHeight, world.boss.bossWidth);
         }
     }
 

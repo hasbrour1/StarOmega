@@ -26,6 +26,9 @@ public class FirstBoss extends Boss {
         xPos = x;
         yPos = y;
         hp = 20;
+
+        bossWidth = BOSS_WIDTH;
+        bossHeight = BOSS_HEIGHT;
         lastUpperFireTime = TimeUtils.nanoTime();
         lastLowerFireTime = TimeUtils.nanoTime();
         state = BOSS_IS_ALIVE;

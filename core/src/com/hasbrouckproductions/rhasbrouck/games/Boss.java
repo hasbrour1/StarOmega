@@ -17,6 +17,9 @@ public abstract class Boss extends DynamicGameObject {
     public static final int BOSS_IS_ALIVE = 1;
     public static final int BOSS_IS_DEAD = 2;
 
+    public static float bossHeight;
+    public static float bossWidth;
+
     public ArrayList<EnemyMainFire> bossLasers;
 
     public float xPos;
