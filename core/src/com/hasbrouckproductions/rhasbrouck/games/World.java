@@ -227,6 +227,12 @@ public class World {
                     enemy.hit();
                 }
             }
+
+            if(laser.bounds.overlaps(boss.bounds)){
+                listener.hit();
+                laser.hitEnemy();
+                boss.hit();
+            }
         }
     }
 

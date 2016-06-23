@@ -8,6 +8,8 @@ import java.util.Random;
 
 /**
  * Created by hasbrouckr on 6/23/2016.
+ * The games first boss
+ *
  */
 public class FirstBoss extends Boss {
 
@@ -30,7 +32,7 @@ public class FirstBoss extends Boss {
     }
 
     public void update(float deltaTime, World world){
-        this.bounds = new Rectangle(xPos, yPos, BOSS_WIDTH, BOSS_HEIGHT);
+        this.bounds = new Rectangle(xPos, yPos + 100, BOSS_WIDTH, BOSS_HEIGHT - 200);
 
         if(xPos > 600) {
             xPos -= 100 * Gdx.graphics.getDeltaTime();
@@ -45,16 +47,17 @@ public class FirstBoss extends Boss {
     public void updateWeapons(World world) {
         //Check to add Boss Laser
         if(xPos < 800) {
-            if (TimeUtils.nanoTime() - lastLowerFireTime > (1000000000 * 2) + 500000000) {
+            if (TimeUtils.nanoTime() - lastLowerFireTime > (1000000000 * 2)) {
                 world.listener.shoot();
                 updateLowerFireTime();
-                bossLasers.add(new EnemyMainFire(xPos - 100, yPos - 150));
+                bossLasers.add(new EnemyMainFire(xPos - 100, yPos + 100));
             }
 
-            if (TimeUtils.nanoTime() - lastUpperFireTime > (1000000000 * 2)) {
+            if (TimeUtils.nanoTime() - lastUpperFireTime > (1000000000 * 2) &&
+                    TimeUtils.nanoTime() - lastLowerFireTime > (1000000000)) {
                 world.listener.shoot();
                 updateUpperFireTime();
-                bossLasers.add(new EnemyMainFire(xPos - 100, yPos + 150));
+                bossLasers.add(new EnemyMainFire(xPos - 100, yPos + 200));
             }
         }
 

@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 /**
  * Created by hasbrouckr on 6/23/2016.
+ * Abstract boss class for each boss
+ *
  */
 public abstract class Boss extends DynamicGameObject {
 
