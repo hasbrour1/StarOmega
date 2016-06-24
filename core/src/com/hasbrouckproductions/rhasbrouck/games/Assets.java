@@ -31,6 +31,8 @@ public class Assets {
     public static Texture quitButton;
     public static Texture resumeButton;
 
+    public static Texture firstBossTexture;
+
 
     public static TextureRegion mainShip;
     public static Texture enemyShip;
@@ -61,6 +63,8 @@ public class Assets {
         mainLaser = new Texture(Gdx.files.internal("data/img/mainLaser.png"));
         quitButton = new Texture(Gdx.files.internal("data/img/quit.png"));
         resumeButton = new Texture(Gdx.files.internal("data/img/resume.png"));
+
+        firstBossTexture = new Texture(Gdx.files.internal("data/img/enemyShip.png"));
 
         mainShip = new TextureRegion(new Texture(Gdx.files.internal("data/img/mainShipScaled.png")), 0,0, 100, 100);
         enemyShip = new Texture(Gdx.files.internal("data/img/enemyShipScaled.png"));

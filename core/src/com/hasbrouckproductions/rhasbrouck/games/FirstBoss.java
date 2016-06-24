@@ -31,6 +31,7 @@ public class FirstBoss extends Boss {
         bossHeight = BOSS_HEIGHT;
         lastUpperFireTime = TimeUtils.nanoTime();
         lastLowerFireTime = TimeUtils.nanoTime();
+        bossTexture = Assets.firstBossTexture;
         state = BOSS_IS_ALIVE;
     }
 

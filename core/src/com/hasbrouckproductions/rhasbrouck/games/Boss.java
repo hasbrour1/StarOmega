@@ -1,6 +1,7 @@
 package com.hasbrouckproductions.rhasbrouck.games;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.oracle.jrockit.jfr.DynamicEventToken;
@@ -27,6 +28,8 @@ public abstract class Boss extends DynamicGameObject {
 
     public int state;
     public int hp;
+
+    public Texture bossTexture;
 
     public Boss(float x, float y, float BOSS_WIDTH, float BOSS_HEIGHT){
         super(x, y, BOSS_WIDTH, BOSS_HEIGHT);
