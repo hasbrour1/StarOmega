@@ -30,6 +30,7 @@ public class Assets {
     public static Texture mainLaser;
     public static Texture quitButton;
     public static Texture resumeButton;
+    public static Texture resetScoreButton;
 
     public static Texture firstBossTexture;
 
@@ -63,6 +64,7 @@ public class Assets {
         mainLaser = new Texture(Gdx.files.internal("data/img/mainLaser.png"));
         quitButton = new Texture(Gdx.files.internal("data/img/quit.png"));
         resumeButton = new Texture(Gdx.files.internal("data/img/resume.png"));
+        resetScoreButton = new Texture(Gdx.files.internal("data/img/scoreReset.png"));
 
         firstBossTexture = new Texture(Gdx.files.internal("data/img/enemyShip.png"));
 

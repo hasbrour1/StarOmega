@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g3d.shaders.BaseShader;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
+
+import javafx.scene.input.TouchPoint;
 
 /**
  * Created by hasbrouckr on 6/10/2016.
@@ -14,16 +17,26 @@ public class HighscoresScreen extends ScreenAdapter {
 
     StarOmega game;
     OrthographicCamera guiCam;
+    Rectangle scoreResetArea;
+    Vector3 touchPoint;
 
     public HighscoresScreen(StarOmega game){
         this.game = game;
+        touchPoint = new Vector3();
+        scoreResetArea = new Rectangle(10, 10, 164, 40);
         guiCam = new OrthographicCamera();
         guiCam.setToOrtho(false, 800, 480);
     }
 
     public void update(){
         if (Gdx.input.justTouched()) {
-            game.setScreen(new MainMenuScreen(game));
+            guiCam.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
+
+            if(scoreResetArea.contains(touchPoint.x, touchPoint.y)){
+                Settings.resetScores();
+            }else{
+                game.setScreen(new MainMenuScreen(game));
+            }
         }
     }
 
@@ -48,6 +61,7 @@ public class HighscoresScreen extends ScreenAdapter {
         Assets.font.draw(game.batch, "3." + Settings.highScores[2], 200, 270);
         Assets.font.draw(game.batch, "4." + Settings.highScores[3], 200, 230);
         Assets.font.draw(game.batch, "5." + Settings.highScores[4], 200, 190);
+        game.batch.draw(Assets.resetScoreButton, 10, 10, 164, 40);
         game.batch.end();
     }
 

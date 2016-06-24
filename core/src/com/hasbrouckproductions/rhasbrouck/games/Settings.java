@@ -59,4 +59,11 @@ public class Settings {
 
         return isHighScore;
     }
+
+    public static void resetScores(){
+        for(int i = 0; i < highScores.length; i++){
+            highScores[i] = 0;
+        }
+        save();
+    }
 }
