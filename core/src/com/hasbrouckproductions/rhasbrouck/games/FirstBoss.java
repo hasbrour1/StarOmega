@@ -21,6 +21,8 @@ public class FirstBoss extends Boss {
 
     public float stateTime;
 
+    private boolean direction;
+
     public FirstBoss(float x, float y){
         super(x, y, BOSS_WIDTH, BOSS_HEIGHT);
         xPos = x;
@@ -33,14 +35,31 @@ public class FirstBoss extends Boss {
         lastLowerFireTime = TimeUtils.nanoTime();
         bossTexture = Assets.firstBossTexture;
         state = BOSS_IS_ALIVE;
+        direction = true;
     }
 
     public void update(float deltaTime, World world){
-        this.bounds = new Rectangle(xPos, yPos + 100, BOSS_WIDTH, BOSS_HEIGHT - 200);
+
 
         if(xPos > 600) {
             xPos -= 100 * Gdx.graphics.getDeltaTime();
+        }else{
+            if(direction){
+                if(yPos < 230){
+                    yPos += 50 * Gdx.graphics.getDeltaTime();
+                }else{
+                    direction = false;
+                }
+            }else{
+                if(yPos > 25){
+                    yPos -= 50 * Gdx.graphics.getDeltaTime();
+                }else{
+                    direction = true;
+                }
+            }
         }
+
+        this.bounds = new Rectangle(xPos, yPos + 100, BOSS_WIDTH, BOSS_HEIGHT - 200);
 
         updateWeapons(world);
 
