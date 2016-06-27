@@ -13,6 +13,8 @@ import java.util.Random;
  */
 public class DefaultLevel extends GenericLevel {
 
+    int max = 0;
+
     @Override
     void generateEnemies() {
 
@@ -23,11 +25,12 @@ public class DefaultLevel extends GenericLevel {
             int randX = rand.nextInt(10 - 1) + 1;
             int randY = rand.nextInt(350 - 50) + 50;
             enemies.add(new Enemy(800 * randX, randY));
+            if(randX > max) max = randX;
         }
     }
 
     @Override
     void generateBoss() {
-        boss = new FirstBoss(800 * 5, 150);
+        boss = new FirstBoss(800 * max + 350, 150);
     }
 }
