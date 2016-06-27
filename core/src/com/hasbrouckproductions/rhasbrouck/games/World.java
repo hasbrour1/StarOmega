@@ -76,6 +76,7 @@ public class World {
             case 3:
                 level = new LevelThree();
                 levelBuild();
+                break;
             default:
                 level = new DefaultLevel();
                 levelBuild();
