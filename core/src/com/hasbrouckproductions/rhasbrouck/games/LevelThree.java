@@ -25,9 +25,9 @@ public class LevelThree extends GenericLevel {
         enemies.add(new Enemy(800 * 3 + 50, 175));
         enemies.add(new Enemy(800 * 4, 300));
         enemies.add(new Enemy(800 * 4 , 100));
-        enemies.add(new Enemy(800 * 4 , 300));
-        enemies.add(new Enemy(800 * 4 + 100, 100));
-        enemies.add(new Enemy(800 * 4 + 50, 175));
+        enemies.add(new Enemy(800 * 4 , 10));
+        enemies.add(new Enemy(800 * 4 + 100, 150));
+        enemies.add(new Enemy(800 * 4 + 350, 300));
         enemies.add(new Enemy(800 * 4 + 100, 100));
         enemies.add(new Enemy(800 * 4 + 50, 175));
     }
