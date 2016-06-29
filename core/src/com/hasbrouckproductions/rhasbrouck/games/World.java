@@ -81,6 +81,10 @@ public class World {
                 level = new LevelFour();
                 levelBuild();
                 break;
+            case 5:
+                level = new LevelFive();
+                levelBuild();
+                break;
             default:
                 level = new DefaultLevel();
                 levelBuild();
