@@ -20,8 +20,6 @@ public class SecondBoss extends Boss {
 
     public float stateTime;
 
-    private boolean direction;
-
     public SecondBoss(float x, float y){
         super(x, y, BOSS_WIDTH, BOSS_HEIGHT);
         xPos = x;
@@ -33,30 +31,14 @@ public class SecondBoss extends Boss {
         lastUpperFireTime = TimeUtils.nanoTime();
         lastLowerFireTime = TimeUtils.nanoTime();
         beamWeaponFireTime = TimeUtils.nanoTime();
-        bossTexture = Assets.firstBossTexture;
+        bossTexture = Assets.secondBossTexture;
         state = BOSS_IS_ALIVE;
-        direction = true;
     }
 
     public void update(float deltaTime, World world){
 
-
         if(xPos > 600) {
             xPos -= 100 * Gdx.graphics.getDeltaTime();
-        }else{
-            if(direction){
-                if(yPos < 230){
-                    yPos += 50 * Gdx.graphics.getDeltaTime();
-                }else{
-                    direction = false;
-                }
-            }else{
-                if(yPos > 25){
-                    yPos -= 50 * Gdx.graphics.getDeltaTime();
-                }else{
-                    direction = true;
-                }
-            }
         }
 
         this.bounds = new Rectangle(xPos, yPos + 100, BOSS_WIDTH, BOSS_HEIGHT - 200);
@@ -73,14 +55,13 @@ public class SecondBoss extends Boss {
             if (TimeUtils.nanoTime() - lastLowerFireTime > (1000000000 * 2)) {
                 world.listener.shoot();
                 updateLowerFireTime();
-                bossLasers.add(new EnemyMainFire(xPos - 100, yPos + 100));
+                bossLasers.add(new EnemyMainFire(xPos - 100, yPos + 130));
             }
 
-            if (TimeUtils.nanoTime() - lastUpperFireTime > (1000000000 * 2) &&
-                    TimeUtils.nanoTime() - lastLowerFireTime > (1000000000)) {
+            if (TimeUtils.nanoTime() - lastUpperFireTime > (1000000000 * 2)) {
                 world.listener.shoot();
                 updateUpperFireTime();
-                bossLasers.add(new EnemyMainFire(xPos - 100, yPos + 200));
+                bossLasers.add(new EnemyMainFire(xPos - 100, yPos + 150));
             }
         }
 
