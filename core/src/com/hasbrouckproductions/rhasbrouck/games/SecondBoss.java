@@ -37,7 +37,7 @@ public class SecondBoss extends Boss {
 
     public void update(float deltaTime, World world){
 
-        if(xPos > 600) {
+        if(xPos > 550) {
             xPos -= 100 * Gdx.graphics.getDeltaTime();
         }
 
@@ -55,13 +55,13 @@ public class SecondBoss extends Boss {
             if (TimeUtils.nanoTime() - lastLowerFireTime > (1000000000 * 2)) {
                 world.listener.shoot();
                 updateLowerFireTime();
-                bossLasers.add(new EnemyMainFire(xPos - 100, yPos + 130));
+                bossLasers.add(new EnemyMainFire(xPos + 160, yPos + 30));
             }
 
             if (TimeUtils.nanoTime() - lastUpperFireTime > (1000000000 * 2)) {
                 world.listener.shoot();
                 updateUpperFireTime();
-                bossLasers.add(new EnemyMainFire(xPos - 100, yPos + 150));
+                bossLasers.add(new EnemyMainFire(xPos + 160, yPos + 300));
             }
         }
 

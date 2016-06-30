@@ -66,7 +66,7 @@ public class World {
     private void generateLevel(int currentLevel) {
         switch (currentLevel){
             case 1:
-                level = new LevelOne();
+                level = new TestLevel();
                 levelBuild();
                 break;
             case 2:
@@ -216,6 +216,7 @@ public class World {
         checkMainLaserCollisions();
         checkEnemyLaserCollisions();
         checkBossLaserCollisions();
+        checkBossCollisions();
     }
 
     //check if ship laser hits any enemies
@@ -268,6 +269,13 @@ public class World {
                 ship.gotHit();
                 listener.hit();
             }
+        }
+    }
+
+    public void checkBossCollisions(){
+        if(boss.bounds.overlaps(ship.bounds)){
+            ship.gotHit();
+            listener.hit();
         }
     }
 
