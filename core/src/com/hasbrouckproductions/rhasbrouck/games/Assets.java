@@ -33,6 +33,7 @@ public class Assets {
     public static Texture resetScoreButton;
 
     public static Texture firstBossTexture;
+    public static Texture secondBossTexture;
 
 
     public static TextureRegion mainShip;
@@ -67,6 +68,7 @@ public class Assets {
         resetScoreButton = new Texture(Gdx.files.internal("data/img/scoreReset.png"));
 
         firstBossTexture = new Texture(Gdx.files.internal("data/img/enemyShip.png"));
+        secondBossTexture = new Texture(Gdx.files.internal("data/img/bossTwo.png"));
 
         mainShip = new TextureRegion(new Texture(Gdx.files.internal("data/img/mainShipScaled.png")), 0,0, 100, 100);
         enemyShip = new Texture(Gdx.files.internal("data/img/enemyShipScaled.png"));
