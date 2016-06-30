@@ -64,7 +64,7 @@ public class SecondBoss extends Boss {
                 bossLasers.add(new EnemyMainFire(xPos + 160, yPos + 300));
             }
 
-            if (TimeUtils.nanoTime() - beamWeaponFireTime > (1000000000 * 40)) {
+            if (bossBeams.isEmpty() && TimeUtils.nanoTime() - beamWeaponFireTime > (1000000000 * 5)) {
                 world.listener.shoot();
                 beamWeaponFireTime = TimeUtils.nanoTime();
                 bossBeams.add(new EnemyBeam(xPos + 50, yPos + 150));
@@ -78,6 +78,7 @@ public class SecondBoss extends Boss {
 
         for(EnemyBeam beam : bossBeams){
             beam.update();
+            beamWeaponFireTime = TimeUtils.nanoTime();
         }
     }
 

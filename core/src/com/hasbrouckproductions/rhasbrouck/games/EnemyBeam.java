@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class EnemyBeam extends DynamicGameObject {
 
-    public static final float BEAM_HEIGHT = 50;
+    public static final float BEAM_HEIGHT = 75;
 
     public static final int BEAM_VILOCITY = 400;
 
@@ -19,7 +19,7 @@ public class EnemyBeam extends DynamicGameObject {
 
 
     public EnemyBeam(float x, float y){
-        super(x, y, BEAM_HEIGHT, 10);
+        super(x, y, 10, BEAM_HEIGHT);
         beamWidth = 10;
         xPos = x;
         yPos = y;
@@ -27,11 +27,12 @@ public class EnemyBeam extends DynamicGameObject {
 
     //update laser position
     public void update(){
-        if(beamWidth < 800){
-            beamWidth -= BEAM_VILOCITY * Gdx.graphics.getDeltaTime();
-        }else{
+        if(beamWidth < 1500){
             beamWidth += BEAM_VILOCITY * Gdx.graphics.getDeltaTime();
+            xPos -= BEAM_VILOCITY * Gdx.graphics.getDeltaTime();
+        }else{
+            xPos -= BEAM_VILOCITY * Gdx.graphics.getDeltaTime();
         }
-        this.bounds = new Rectangle(xPos, yPos, BEAM_HEIGHT, beamWidth);
+        this.bounds = new Rectangle(xPos, yPos, beamWidth, BEAM_HEIGHT);
     }
 }

@@ -51,4 +51,24 @@ public abstract class Boss extends DynamicGameObject {
             state = BOSS_IS_DEAD;
         }
     }
+
+    public void checkRemoveWeapons(){
+        int len = bossLasers.size();
+        for (int i = 0; i < len; i++) {
+            EnemyMainFire laser = bossLasers.get(i);
+            if(laser.state == EnemyMainFire.LASER_HIT || laser.xPos <= -50){
+                bossLasers.remove(i);
+                len --;
+            }
+        }
+
+        len = bossBeams.size();
+        for (int i = 0; i < len; i++) {
+            EnemyBeam beam = bossBeams.get(i);
+            if(beam.xPos <= - 50){
+                bossBeams.remove(i);
+                len--;
+            }
+        }
+    }
 }
