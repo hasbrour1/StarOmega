@@ -41,7 +41,7 @@ public class FirstBoss extends Boss {
     public void update(float deltaTime, World world){
 
 
-        if(xPos > 600) {
+        if(xPos > 500) {
             xPos -= 100 * Gdx.graphics.getDeltaTime();
         }else{
             if(direction){
