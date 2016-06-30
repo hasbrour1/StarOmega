@@ -63,6 +63,12 @@ public class SecondBoss extends Boss {
                 updateUpperFireTime();
                 bossLasers.add(new EnemyMainFire(xPos + 160, yPos + 300));
             }
+
+            if (TimeUtils.nanoTime() - beamWeaponFireTime > (1000000000 * 7)) {
+                world.listener.shoot();
+                beamWeaponFireTime = TimeUtils.nanoTime();
+                bossLasers.add(new EnemyMainFire(xPos + 160, yPos + 300));
+            }
         }
 
         //Update Laser Positions
