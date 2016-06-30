@@ -114,5 +114,9 @@ public class WorldRenderer {
         for(EnemyMainFire laser : world.boss.bossLasers){
             batch.draw(Assets.mainLaser, laser.xPos, laser.yPos, 50, 10);
         }
+
+        for(EnemyBeam beam : world.boss.bossBeams){
+            batch.draw(Assets.mainLaser, beam.xPos, beam.yPos, beam.beamWidth, EnemyBeam.BEAM_HEIGHT);
+        }
     }
 }

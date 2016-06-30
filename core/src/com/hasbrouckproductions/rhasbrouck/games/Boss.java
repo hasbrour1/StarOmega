@@ -22,6 +22,7 @@ public abstract class Boss extends DynamicGameObject {
     public static float bossWidth;
 
     public ArrayList<EnemyMainFire> bossLasers;
+    public ArrayList<EnemyBeam> bossBeams;
 
     public float xPos;
     public float yPos;
@@ -36,6 +37,7 @@ public abstract class Boss extends DynamicGameObject {
         xPos = x;
         yPos = y;
         bossLasers = new ArrayList<EnemyMainFire>();
+        bossBeams = new ArrayList<EnemyBeam>();
         state = BOSS_IS_ALIVE;
     }
 

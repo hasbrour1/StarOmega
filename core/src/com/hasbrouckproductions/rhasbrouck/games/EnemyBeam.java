@@ -28,9 +28,9 @@ public class EnemyBeam extends DynamicGameObject {
     //update laser position
     public void update(){
         if(beamWidth < 800){
-            beamWidth += BEAM_VILOCITY * Gdx.graphics.getDeltaTime();
-        }else{
             beamWidth -= BEAM_VILOCITY * Gdx.graphics.getDeltaTime();
+        }else{
+            beamWidth += BEAM_VILOCITY * Gdx.graphics.getDeltaTime();
         }
         this.bounds = new Rectangle(xPos, yPos, BEAM_HEIGHT, beamWidth);
     }

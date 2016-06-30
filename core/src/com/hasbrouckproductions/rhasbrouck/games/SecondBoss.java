@@ -51,7 +51,7 @@ public class SecondBoss extends Boss {
     @Override
     public void updateWeapons(World world) {
         //Check to add Boss Laser
-        if(xPos < 800) {
+        if(xPos < 550) {
             if (TimeUtils.nanoTime() - lastLowerFireTime > (1000000000 * 2)) {
                 world.listener.shoot();
                 updateLowerFireTime();
@@ -64,16 +64,20 @@ public class SecondBoss extends Boss {
                 bossLasers.add(new EnemyMainFire(xPos + 160, yPos + 300));
             }
 
-            if (TimeUtils.nanoTime() - beamWeaponFireTime > (1000000000 * 7)) {
+            if (TimeUtils.nanoTime() - beamWeaponFireTime > (1000000000 * 40)) {
                 world.listener.shoot();
                 beamWeaponFireTime = TimeUtils.nanoTime();
-                bossLasers.add(new EnemyMainFire(xPos + 160, yPos + 300));
+                bossBeams.add(new EnemyBeam(xPos + 50, yPos + 150));
             }
         }
 
         //Update Laser Positions
         for(EnemyMainFire laser : bossLasers){
             laser.update();
+        }
+
+        for(EnemyBeam beam : bossBeams){
+            beam.update();
         }
     }
 
