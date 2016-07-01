@@ -270,6 +270,15 @@ public class World {
                 listener.hit();
             }
         }
+
+        len = boss.bossBeams.size();
+        for(int i = 0; i < len; i++){
+            EnemyBeam beam = boss.bossBeams.get(i);
+            if(beam.bounds.overlaps(ship.bounds)){
+                ship.gotHit();
+                listener.hit();
+            }
+        }
     }
 
     public void checkBossCollisions(){

@@ -78,6 +78,9 @@ public class SecondBoss extends Boss {
 
         for(EnemyBeam beam : bossBeams){
             beam.update();
+        }
+
+        if(!bossBeams.isEmpty()){
             beamWeaponFireTime = TimeUtils.nanoTime();
         }
     }
