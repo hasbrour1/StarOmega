@@ -67,7 +67,7 @@ public class SecondBoss extends Boss {
             if (bossBeams.isEmpty() && TimeUtils.nanoTime() - beamWeaponFireTime > (1000000000 * 5)) {
                 world.listener.shoot();
                 beamWeaponFireTime = TimeUtils.nanoTime();
-                bossBeams.add(new EnemyBeam(xPos + 50, yPos + 150));
+                bossBeams.add(new EnemyBeam(xPos + 50, yPos + 130));
             }
         }
 
@@ -80,9 +80,7 @@ public class SecondBoss extends Boss {
             beam.update();
         }
 
-        if(!bossBeams.isEmpty()){
-            beamWeaponFireTime = TimeUtils.nanoTime();
-        }
+        checkRemoveWeapons();
     }
 
     public void updateUpperFireTime(){

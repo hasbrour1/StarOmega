@@ -88,6 +88,8 @@ public class FirstBoss extends Boss {
         for(EnemyMainFire laser : bossLasers){
             laser.update();
         }
+
+        checkRemoveWeapons();
     }
 
     public void updateUpperFireTime(){

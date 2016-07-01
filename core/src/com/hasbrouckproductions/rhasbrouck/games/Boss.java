@@ -65,7 +65,7 @@ public abstract class Boss extends DynamicGameObject {
         len = bossBeams.size();
         for (int i = 0; i < len; i++) {
             EnemyBeam beam = bossBeams.get(i);
-            if(beam.xPos <= - 50){
+            if(beam.xPos <= - 3000){
                 bossBeams.remove(i);
                 len--;
             }
