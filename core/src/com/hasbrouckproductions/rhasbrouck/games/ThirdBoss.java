@@ -28,7 +28,7 @@ public class ThirdBoss extends Boss{
         bossHeight = BOSS_HEIGHT;
         lastUpperFireTime = TimeUtils.nanoTime();
         lastLowerFireTime = TimeUtils.nanoTime();
-        bossTexture = Assets.firstBossTexture;
+        bossTexture = Assets.thirdBossTexture;
         state = BOSS_IS_ALIVE;
         direction = true;
     }
@@ -68,14 +68,16 @@ public class ThirdBoss extends Boss{
             if (TimeUtils.nanoTime() - lastLowerFireTime > (1000000000 * 2)) {
                 world.listener.shoot();
                 updateLowerFireTime();
-                bossLasers.add(new EnemyMainFire(xPos - 100, yPos + 100));
+                bossLasers.add(new EnemyMainFire(xPos - 47, yPos + 23));
+                bossLasers.add(new EnemyMainFire(xPos - 47, yPos + 133));
             }
 
             if (TimeUtils.nanoTime() - lastUpperFireTime > (1000000000 * 2) &&
                     TimeUtils.nanoTime() - lastLowerFireTime > (1000000000)) {
                 world.listener.shoot();
                 updateUpperFireTime();
-                bossLasers.add(new EnemyMainFire(xPos - 100, yPos + 200));
+                bossLasers.add(new EnemyMainFire(xPos, yPos + 57));
+                bossLasers.add(new EnemyMainFire(xPos, yPos + 98));
             }
         }
 
