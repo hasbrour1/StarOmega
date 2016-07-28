@@ -68,16 +68,16 @@ public class ThirdBoss extends Boss{
             if (TimeUtils.nanoTime() - lastLowerFireTime > (1000000000 * 2)) {
                 world.listener.shoot();
                 updateLowerFireTime();
-                bossLasers.add(new EnemyMainFire(xPos - 47, yPos + 23));
-                bossLasers.add(new EnemyMainFire(xPos - 47, yPos + 133));
+                bossLasers.add(new EnemyMainFire(xPos + 35, yPos + 50));
+                bossLasers.add(new EnemyMainFire(xPos + 35, yPos + 250));
             }
 
             if (TimeUtils.nanoTime() - lastUpperFireTime > (1000000000 * 2) &&
                     TimeUtils.nanoTime() - lastLowerFireTime > (1000000000)) {
                 world.listener.shoot();
                 updateUpperFireTime();
-                bossLasers.add(new EnemyMainFire(xPos, yPos + 57));
-                bossLasers.add(new EnemyMainFire(xPos, yPos + 98));
+                bossLasers.add(new EnemyMainFire(xPos - 30, yPos + 105));
+                bossLasers.add(new EnemyMainFire(xPos - 30, yPos + 190));
             }
         }
 
