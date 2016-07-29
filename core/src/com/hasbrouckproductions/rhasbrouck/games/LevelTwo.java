@@ -11,17 +11,14 @@ public class LevelTwo extends GenericLevel {
 
     @Override
     void generateEnemies() {
-        enemies.add(new Enemy(800, 100));
         enemies.add(new Enemy(850, 75));
         enemies.add(new Enemy(860, 130));
         enemies.add(new Enemy(800 * 2, 50));
         enemies.add(new Enemy(830 * 2, 200));
         enemies.add(new Enemy(800 * 2 + 80, 150));
-        enemies.add(new Enemy(830 * 2 + 15, 300));
         enemies.add(new Enemy(830 * 2 + 90, 100));
         enemies.add(new Enemy(800 * 3 + 100, 100));
         enemies.add(new Enemy(800 * 3, 300));
-        enemies.add(new Enemy(800 * 3 + 100, 100));
         enemies.add(new Enemy(800 * 3 + 50, 175));
     }
 
