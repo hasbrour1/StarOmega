@@ -77,7 +77,7 @@ public class Assets {
         shipHit = new TextureRegion(new Texture(Gdx.files.internal("data/img/explosion.png")), 0,0, 50, 50);
 
         clickSound = Gdx.audio.newSound(Gdx.files.internal("data/sound/clickSound.wav"));
-        shootSound = Gdx.audio.newSound(Gdx.files.internal("data/sound/shootSound.mp3"));
+        shootSound = Gdx.audio.newSound(Gdx.files.internal("data/sound/shootSound.wav"));
         hitSound = Gdx.audio.newSound(Gdx.files.internal("data/sound/hitSound.wav"));
 
         font = new BitmapFont(Gdx.files.internal("data/fonts/mainFont.fnt"),
