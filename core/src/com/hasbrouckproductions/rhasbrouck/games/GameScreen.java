@@ -77,7 +77,7 @@ public class GameScreen extends ScreenAdapter {
         renderer = new WorldRenderer(game.batch, world);
         pauseBounds = new Rectangle(320 - 64, 480 - 64, 64, 64);
         resumeBounds = new Rectangle(200 - (160/2), 240 - (40/2), 120, 40);
-        soundBounds = new Rectangle(700 - (52/2), 480 - (52/2), 52, 52);
+        soundBounds = new Rectangle(750 - (52/2), 420 - (52/2), 52, 52);
         quitBounds = new Rectangle(600 - (160/2), 240 - (40/2), 147, 40);
         lastScore = 0;
         scoreString = "SCORE: 0";
@@ -175,8 +175,15 @@ public class GameScreen extends ScreenAdapter {
                 return;
             }
 
-            if(pauseBounds.contains(touchPoint.x, touchPoint.y)){
+            if(soundBounds.contains(touchPoint.x, touchPoint.y)){
                 //Stop/Start Music
+                if(soundState == SOUND_STATE_ON){
+
+                    soundState = SOUND_STATE_OFF;
+                }else{
+
+                    soundState = SOUND_STATE_ON;
+                }
 
             }
         }
@@ -243,10 +250,10 @@ public class GameScreen extends ScreenAdapter {
         //Draw sound icon
         switch(soundState){
             case SOUND_STATE_ON:
-                game.batch.draw(Assets.soundOnButton,700 - (52/2), 480 - (52/2), 52, 52);
+                game.batch.draw(Assets.soundOnButton, 750 - (52/2), 420 - (52/2), 52, 52);
                 break;
             case SOUND_STATE_OFF:
-                game.batch.draw(Assets.soundOffButton,700 - (52/2), 480 - (52/2), 52, 52);
+                game.batch.draw(Assets.soundOffButton, 750 - (52/2), 420 - (52/2), 52, 52);
                 break;
             default:
                 //Draw nothing

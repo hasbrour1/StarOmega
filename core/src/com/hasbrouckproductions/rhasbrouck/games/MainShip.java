@@ -19,7 +19,7 @@ public class MainShip extends DynamicGameObject {
     public static final float SHIP_WIDTH = 100;
     public static final float SHIP_HEIGHT = 100;
 
-    public static final int SHIP_SPEED = 300;
+    public static final int SHIP_SPEED = 400;
 
     public static float xPos;
     public static float yPos;
