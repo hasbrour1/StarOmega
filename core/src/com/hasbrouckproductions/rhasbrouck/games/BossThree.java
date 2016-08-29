@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 /**
  * Created by hasbrouckr on 7/28/2016.
  */
-public class ThirdBoss extends Boss{
+public class BossThree extends Boss{
     public static final float BOSS_WIDTH = 300;
     public static final float BOSS_HEIGHT = 300;
 
@@ -18,7 +18,7 @@ public class ThirdBoss extends Boss{
 
     private boolean direction;
 
-    public ThirdBoss(float x, float y){
+    public BossThree(float x, float y){
         super(x, y, BOSS_WIDTH, BOSS_HEIGHT);
         xPos = x;
         yPos = y;

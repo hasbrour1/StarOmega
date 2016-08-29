@@ -1,9 +1,5 @@
 package com.hasbrouckproductions.rhasbrouck.games;
 
-import com.badlogic.gdx.Gdx;
-
-import java.util.Random;
-
 /**
  * Created by hasbrouckr on 6/17/2016.
  */
@@ -21,6 +17,6 @@ public class LevelOne extends GenericLevel {
 
     @Override
     void generateBoss() {
-        boss = new FirstBoss(800 * 3 + 300, 50);
+        boss = new BossOne(800 * 3 + 300, 50);
     }
 }

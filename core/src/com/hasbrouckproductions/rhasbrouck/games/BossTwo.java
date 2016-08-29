@@ -4,26 +4,23 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.TimeUtils;
 
-import java.util.Random;
-
 /**
- * Created by hasbrouckr on 6/23/2016.
- * The games first boss
+ * Created by hasbrouckr on 6/30/2016.
+ * Boss for Level 2
  *
  */
-public class FirstBoss extends Boss {
+public class BossTwo extends Boss {
 
-    public static final float BOSS_WIDTH = 300;
-    public static final float BOSS_HEIGHT = 300;
+    public static final float BOSS_WIDTH = 330;
+    public static final float BOSS_HEIGHT = 310;
 
     public float lastUpperFireTime;
     public float lastLowerFireTime;
+    public float beamWeaponFireTime;
 
     public float stateTime;
 
-    private boolean direction;
-
-    public FirstBoss(float x, float y){
+    public BossTwo(float x, float y){
         super(x, y, BOSS_WIDTH, BOSS_HEIGHT);
         xPos = x;
         yPos = y;
@@ -33,30 +30,15 @@ public class FirstBoss extends Boss {
         bossHeight = BOSS_HEIGHT;
         lastUpperFireTime = TimeUtils.nanoTime();
         lastLowerFireTime = TimeUtils.nanoTime();
-        bossTexture = Assets.firstBossTexture;
+        beamWeaponFireTime = TimeUtils.nanoTime();
+        bossTexture = Assets.secondBossTexture;
         state = BOSS_IS_ALIVE;
-        direction = true;
     }
 
     public void update(float deltaTime, World world){
 
-
-        if(xPos > 500) {
+        if(xPos > 550) {
             xPos -= 100 * Gdx.graphics.getDeltaTime();
-        }else{
-            if(direction){
-                if(yPos < 230){
-                    yPos += 50 * Gdx.graphics.getDeltaTime();
-                }else{
-                    direction = false;
-                }
-            }else{
-                if(yPos > 25){
-                    yPos -= 50 * Gdx.graphics.getDeltaTime();
-                }else{
-                    direction = true;
-                }
-            }
         }
 
         this.bounds = new Rectangle(xPos, yPos + 100, BOSS_WIDTH, BOSS_HEIGHT - 200);
@@ -69,24 +51,33 @@ public class FirstBoss extends Boss {
     @Override
     public void updateWeapons(World world) {
         //Check to add Boss Laser
-        if(xPos < 800) {
+        if(xPos < 550) {
             if (TimeUtils.nanoTime() - lastLowerFireTime > (1000000000 * 2)) {
                 world.listener.shoot();
                 updateLowerFireTime();
-                bossLasers.add(new EnemyMainFire(xPos - 100, yPos + 100));
+                bossLasers.add(new EnemyMainFire(xPos + 160, yPos + 30));
             }
 
-            if (TimeUtils.nanoTime() - lastUpperFireTime > (1000000000 * 2) &&
-                    TimeUtils.nanoTime() - lastLowerFireTime > (1000000000)) {
+            if (TimeUtils.nanoTime() - lastUpperFireTime > (1000000000 * 2)) {
                 world.listener.shoot();
                 updateUpperFireTime();
-                bossLasers.add(new EnemyMainFire(xPos - 100, yPos + 200));
+                bossLasers.add(new EnemyMainFire(xPos + 160, yPos + 300));
+            }
+
+            if (bossBeams.isEmpty() && TimeUtils.nanoTime() - beamWeaponFireTime > (1000000000 * 5)) {
+                world.listener.shoot();
+                beamWeaponFireTime = TimeUtils.nanoTime();
+                bossBeams.add(new EnemyBeam(xPos + 50, yPos + 130));
             }
         }
 
         //Update Laser Positions
         for(EnemyMainFire laser : bossLasers){
             laser.update();
+        }
+
+        for(EnemyBeam beam : bossBeams){
+            beam.update();
         }
 
         checkRemoveWeapons();
