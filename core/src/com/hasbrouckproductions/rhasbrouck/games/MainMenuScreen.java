@@ -18,6 +18,7 @@ public class MainMenuScreen extends ScreenAdapter {
     Rectangle playBounds;
     Rectangle highscoresBounds;
     Rectangle helpBounds;
+    Rectangle creditsBounds;
     Vector3 touchPoint;
 
     public MainMenuScreen (StarOmega game) {
@@ -28,6 +29,7 @@ public class MainMenuScreen extends ScreenAdapter {
         playBounds = new Rectangle(380, 180, 88, 40);
         highscoresBounds = new Rectangle(350, 110, 153, 40);
         helpBounds = new Rectangle(380, 50, 84, 41);
+
         touchPoint = new Vector3();
     }
 

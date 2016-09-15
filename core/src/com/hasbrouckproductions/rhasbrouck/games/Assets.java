@@ -33,6 +33,7 @@ public class Assets {
     public static Texture resetScoreButton;
     public static Texture soundOnButton;
     public static Texture soundOffButton;
+    public static Texture creditsButton;
 
     public static Texture firstBossTexture;
     public static Texture secondBossTexture;
@@ -72,6 +73,7 @@ public class Assets {
         resetScoreButton = new Texture(Gdx.files.internal("data/img/scoreReset.png"));
         soundOnButton = new Texture(Gdx.files.internal("data/img/SpeakerOn.png"));
         soundOffButton = new Texture(Gdx.files.internal("data/img/SpeakerOff.png"));
+        creditsButton = new Texture(Gdx.files.internal("data/img/credits.png"));
 
         firstBossTexture = new Texture(Gdx.files.internal("data/img/enemyShip.png"));
         secondBossTexture = new Texture(Gdx.files.internal("data/img/bossTwo.png"));
