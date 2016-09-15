@@ -14,6 +14,6 @@ public class TestLevel extends GenericLevel {
 
     @Override
     void generateBoss() {
-        boss = new BossThree(800, 50);
+        boss = new BossFour(800, 100);
     }
 }
