@@ -53,6 +53,11 @@ public class MainMenuScreen extends ScreenAdapter {
                 game.setScreen(new HelpScreen(game));
                 return;
             }
+            if(creditsBounds.contains(touchPoint.x, touchPoint.y)){
+                Assets.playSound(Assets.clickSound);
+                game.setScreen(new CreditsScreen(game));
+                return;
+            }
         }
     }
 
