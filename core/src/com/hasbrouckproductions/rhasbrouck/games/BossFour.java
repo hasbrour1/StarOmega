@@ -23,6 +23,9 @@ public class BossFour extends Boss {
     public static final int START_TIMER = 4;
     public static final int INCOMMING = 5;
 
+    private float lastInnerWeaponFire;
+    private float lastOuterWeaponFire;
+
     boolean direction;
     int chargingState;
 
@@ -46,7 +49,28 @@ public class BossFour extends Boss {
 
     @Override
     public void updateWeapons(World world) {
+        if(chargingState == NOT_CHARGING){
+            if (TimeUtils.nanoTime() - lastOuterWeaponFire > (100000000 * 2)) {
+                world.listener.shoot();
+                lastOuterWeaponFire = TimeUtils.nanoTime();
+                bossLasers.add(new EnemyMainFire(xPos + 155, yPos + 200));
+                bossLasers.add(new EnemyMainFire(xPos + 155, yPos + 90));
+            }
 
+            if (TimeUtils.nanoTime() - lastInnerWeaponFire > (100000000 * 2)) {
+                world.listener.shoot();
+                lastInnerWeaponFire = TimeUtils.nanoTime();
+                bossLasers.add(new EnemyMainFire(xPos + 95, yPos + 175));
+                bossLasers.add(new EnemyMainFire(xPos + 95, yPos + 115));
+            }
+        }
+
+        //Update Laser Positions
+        for(EnemyMainFire laser : bossLasers){
+            laser.update();
+        }
+
+        checkRemoveWeapons();
     }
 
     @Override
@@ -60,6 +84,8 @@ public class BossFour extends Boss {
                         chargingState = START_TIMER;
                     break;
                 case START_TIMER:
+                    lastInnerWeaponFire = TimeUtils.nanoTime();
+                    lastOuterWeaponFire = TimeUtils.nanoTime();
                     chargeTimer.schedule( new TimerTask() {
                         public void run() {
                             chargingState = PREPARE_CHARGE;
