@@ -24,8 +24,7 @@ public class BossFive extends Boss {
     public static final int MOVE_UP = 2;
     public static final int MOVE_DOWN = 3;
 
-    private float lastInnerWeaponFire;
-    private float lastOuterWeaponFire;
+    private float lastWeaponFire;
 
     boolean direction;
     int bossState;
@@ -93,6 +92,7 @@ public class BossFive extends Boss {
         updateWeapons(world);
     }
 
+    //moves boss in a box formation
     public void moveBoss(){
         switch(moveState){
             case MOVE_DOWN:
