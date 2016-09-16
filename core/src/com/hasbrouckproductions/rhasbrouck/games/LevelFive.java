@@ -36,6 +36,6 @@ public class LevelFive extends GenericLevel {
 
     @Override
     void generateBoss() {
-        boss = new BossOne(800 * 6, 150);
+        boss = new BossFive(800 * 6, 150);
     }
 }
