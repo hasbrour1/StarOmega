@@ -40,6 +40,7 @@ public class Assets {
     public static Texture secondBossTexture;
     public static Texture thirdBossTexture;
     public static Texture fourthBossTexture;
+    public static Texture bossFiveUnshieldedTexture;
 
 
     public static TextureRegion mainShip;
@@ -82,6 +83,7 @@ public class Assets {
         secondBossTexture = new Texture(Gdx.files.internal("data/img/bossTwo.png"));
         thirdBossTexture = new Texture(Gdx.files.internal("data/img/bossThree.png"));
         fourthBossTexture = new Texture(Gdx.files.internal("data/img/bossFour.PNG"));
+        bossFiveUnshieldedTexture = new Texture(Gdx.files.internal("data/img/bossFiveUnshielded.png"));
 
         mainShip = new TextureRegion(new Texture(Gdx.files.internal("data/img/mainShipScaled.png")), 0,0, 100, 100);
         enemyShip = new Texture(Gdx.files.internal("data/img/enemyShipScaled.png"));
