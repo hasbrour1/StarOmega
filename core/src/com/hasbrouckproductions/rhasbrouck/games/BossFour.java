@@ -75,8 +75,6 @@ public class BossFour extends Boss {
 
     @Override
     public void update(float deltaTime, World world) {
-            Gdx.app.log("CHARGING", "Charge level = " + chargingState);
-
             switch(chargingState){
                 case INCOMMING:
                     xPos -= 100 * Gdx.graphics.getDeltaTime();
@@ -109,7 +107,6 @@ public class BossFour extends Boss {
                     break;
                 case PREPARE_CHARGE:
                     xPos += 100 * Gdx.graphics.getDeltaTime();
-                    Gdx.app.log("CHARGING", "xPos = " + xPos);
                     if(xPos > 700) {
                         chargingState = CHARGE_FORWARD;
                     }
@@ -133,9 +130,5 @@ public class BossFour extends Boss {
         this.bounds = new Rectangle(xPos, yPos + 100, BOSS_WIDTH, BOSS_HEIGHT - 200);
 
         updateWeapons(world);
-    }
-
-    public static void StartTimer(){
-
     }
 }
