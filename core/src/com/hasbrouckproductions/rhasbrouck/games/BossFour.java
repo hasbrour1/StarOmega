@@ -93,7 +93,7 @@ public class BossFour extends Boss {
                 case NOT_CHARGING:
                     if (direction) {
                         if (yPos < 230) {
-                            yPos += 50 * Gdx.graphics.getDeltaTime();
+                                yPos += 50 * Gdx.graphics.getDeltaTime();
                         } else {
                             direction = false;
                         }

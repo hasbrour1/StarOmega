@@ -19,11 +19,17 @@ public class BossFive extends Boss {
     public static final int INCOMMING = 2;
     public static final int START_TIMER = 3;
 
+    public static final int MOVE_LEFT = 0;
+    public static final int MOVE_RIGHT = 1;
+    public static final int MOVE_UP = 2;
+    public static final int MOVE_DOWN = 3;
+
     private float lastInnerWeaponFire;
     private float lastOuterWeaponFire;
 
     boolean direction;
     int bossState;
+    int moveState;
 
     Timer shieldTimer;
 
@@ -55,21 +61,28 @@ public class BossFive extends Boss {
         switch(bossState){
             case INCOMMING:
                 xPos -= 100 * Gdx.graphics.getDeltaTime();
-                if(xPos < 500)
+                if(xPos < 500) {
+                    moveState = MOVE_UP;
                     bossState = START_TIMER;
+                }
                 break;
             case START_TIMER:
                 shieldTimer.schedule( new TimerTask() {
                     public void run() {
-                        bossState = SHIELD_UP;
+                        if(bossState == SHIELD_UP){
+                            bossTexture = Assets.bossFiveUnshieldedTexture;
+                            bossState = SHIELD_DOWN;
+                        }else {
+                            bossState = SHIELD_UP;
+                        }
                     }
                 }, 0, 20*1000);
                 break;
             case SHIELD_DOWN:
-
+                moveBoss();
                 break;
             case SHIELD_UP:
-
+                moveBoss();
                 break;
             default:
                 break;
@@ -78,5 +91,40 @@ public class BossFive extends Boss {
         this.bounds = new Rectangle(xPos, yPos + 100, BOSS_WIDTH, BOSS_HEIGHT - 200);
 
         updateWeapons(world);
+    }
+
+    public void moveBoss(){
+        switch(moveState){
+            case MOVE_DOWN:
+                if (yPos > 1) {
+                    yPos -= 150 * Gdx.graphics.getDeltaTime();
+                } else {
+                    moveState = MOVE_RIGHT;
+                }
+                break;
+            case MOVE_UP:
+                if (yPos < 230) {
+                    yPos += 150 * Gdx.graphics.getDeltaTime();
+                } else {
+                    moveState = MOVE_LEFT;
+                }
+                break;
+            case MOVE_LEFT:
+                if(xPos > 100) {
+                    xPos -= 150 * Gdx.graphics.getDeltaTime();
+                }else{
+                    moveState = MOVE_DOWN;
+                }
+                break;
+            case MOVE_RIGHT:
+                if(xPos < 500) {
+                    xPos += 150 * Gdx.graphics.getDeltaTime();
+                }else{
+                    moveState = MOVE_UP;
+                }
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -66,8 +66,8 @@ public class World {
     private void generateLevel(int currentLevel) {
         switch (currentLevel){
             case 1:
-                //level = new TestLevel();
-                level = new LevelOne();
+                level = new TestLevel();
+                //level = new LevelOne();
                 levelBuild();
                 break;
             case 2:
