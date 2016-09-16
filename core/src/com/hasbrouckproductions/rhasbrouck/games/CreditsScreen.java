@@ -41,9 +41,10 @@ public class CreditsScreen extends ScreenAdapter {
 
         game.batch.enableBlending();
         game.batch.begin();
-        Assets.font.draw(game.batch, "Game Design by: Robert H.", 100, 360);
-        Assets.font.draw(game.batch, "Music and Sounds by: Kyle S.", 100, 330);
+        Assets.font.draw(game.batch, "Game Design by: Robert Hasbrouck", 100, 360);
+        Assets.font.draw(game.batch, "Music by: Kyle L. Smith", 100, 330);
         Assets.font.draw(game.batch, "Game Sprites from: opengameart.org", 100, 300);
+        Assets.font.draw(game.batch, "Game Sounds from: freesound.org", 100, 270);
         game.batch.end();
 
     }
