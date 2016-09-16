@@ -1,6 +1,7 @@
 package com.hasbrouckproductions.rhasbrouck.games;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -50,6 +51,8 @@ public class Assets {
     public static Sound shootSound;
     public static Sound hitSound;
 
+    public static Music gameMusic;
+
     public static BitmapFont font;
 
     public static Animation explosionAnimation;
@@ -87,6 +90,10 @@ public class Assets {
         clickSound = Gdx.audio.newSound(Gdx.files.internal("data/sound/clickSound.wav"));
         shootSound = Gdx.audio.newSound(Gdx.files.internal("data/sound/shootSound.wav"));
         hitSound = Gdx.audio.newSound(Gdx.files.internal("data/sound/hitSound.wav"));
+
+        gameMusic = Gdx.audio.newMusic(Gdx.files.internal("data/sound/gameMusic.m4a"));
+        gameMusic.setLooping(true);
+        gameMusic.play();
 
         font = new BitmapFont(Gdx.files.internal("data/fonts/mainFont.fnt"),
                 Gdx.files.internal("data/fonts/mainFont.png"),false);

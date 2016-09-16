@@ -178,10 +178,10 @@ public class GameScreen extends ScreenAdapter {
             if(soundBounds.contains(touchPoint.x, touchPoint.y)){
                 //Stop/Start Music
                 if(soundState == SOUND_STATE_ON){
-
+                    Assets.gameMusic.pause();
                     soundState = SOUND_STATE_OFF;
                 }else{
-
+                    Assets.gameMusic.play();
                     soundState = SOUND_STATE_ON;
                 }
 
