@@ -300,6 +300,7 @@ public class World {
                 powerUps.remove(i);
                 len--;
                 ship.gotPower();
+                ship.hitPoints += 3;
                 listener.power();
             }
         }
