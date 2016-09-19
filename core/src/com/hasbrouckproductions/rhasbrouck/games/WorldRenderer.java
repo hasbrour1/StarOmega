@@ -50,6 +50,7 @@ public class WorldRenderer {
         batch.begin();
         renderShip();
         renderMainShipFire();
+        renderMainShipHp();
         renderEnemyFire();
         renderEnemies();
         renderPowerUps();
@@ -78,6 +79,26 @@ public class WorldRenderer {
     private void renderMainShipFire(){
         for(MainLaser laser : world.mainShipLasers){
             batch.draw(Assets.mainLaser, laser.xPos, laser.yPos, 50, 10);
+        }
+    }
+
+    //Renderes the mainship hp
+    private void renderMainShipHp(){
+        if(world.ship.hitPoints > 0){
+            int hp = world.ship.hitPoints;
+
+            //all hp should be green
+            if(hp % 2  == 0){
+                for(int i = 0; i < hp / 2; i++){
+                    batch.draw(Assets.greenHp, 420 + (i * 25), 440, 20 , 20);
+                }
+            }else{//last hp should be red
+                for(int i = 0; i < (hp - 1) / 2; i++){
+                    batch.draw(Assets.greenHp, 420 + (i * 25), 440, 20 , 20);
+                }
+
+                batch.draw(Assets.redHp, 420 + (((hp - 1) / 2) * 25), 440, 20 , 20);
+            }
         }
     }
 
