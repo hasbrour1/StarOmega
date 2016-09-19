@@ -47,11 +47,13 @@ public class GameScreen extends ScreenAdapter {
     int lastScore;
     String scoreString;
 
+    public final MainShip ship;
 
     GlyphLayout glyphLayout = new GlyphLayout();
 
     public GameScreen (StarOmega game) {
         this.game = game;
+        this.ship = new MainShip(5, 1);
 
         state = GAME_READY;
         soundState = SOUND_STATE_ON;
@@ -73,7 +75,7 @@ public class GameScreen extends ScreenAdapter {
             @Override
             public void power() {Assets.playSound(Assets.hitSound);}
         };
-        world = new World(worldListener, level);
+        world = new World(worldListener, level, ship);
         renderer = new WorldRenderer(game.batch, world);
         pauseBounds = new Rectangle(320 - 64, 480 - 64, 64, 64);
         resumeBounds = new Rectangle(200 - (160/2), 240 - (40/2), 120, 40);
@@ -191,7 +193,7 @@ public class GameScreen extends ScreenAdapter {
 
     private void updateLevelEnd () {
         if (Gdx.input.justTouched()) {
-            world = new World(worldListener, level);
+            world = new World(worldListener, level, ship);
             renderer = new WorldRenderer(game.batch, world);
             world.score = lastScore;
             state = GAME_READY;

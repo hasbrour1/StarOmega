@@ -49,6 +49,7 @@ public class BossFive extends Boss {
 
 
     @Override
+    //TODO: Create weapon fire and shield graphic
     public void updateWeapons(World world) {
 
         checkRemoveWeapons();

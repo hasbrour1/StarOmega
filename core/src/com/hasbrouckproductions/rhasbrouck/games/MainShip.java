@@ -26,10 +26,13 @@ public class MainShip extends DynamicGameObject {
     int state;
     float stateTime;
 
+    public int hitPoints;
+
     public MainShip (float x, float y) {
         super(x, y, SHIP_WIDTH, SHIP_HEIGHT);
         stateTime = 0;
         state = SHIP_STATE_ALIVE;
+        hitPoints = 10;
     }
 
     //update ships position
@@ -55,12 +58,17 @@ public class MainShip extends DynamicGameObject {
     //updates ship status when geting hit
     public void gotHit () {
         velocity.set(0, 0);
-        if(this.state == SHIP_STATE_ALIVE) {
+
+        hitPoints--;
+
+        if(hitPoints <= 0){
             state = SHIP_DEAD;
         }
-        else{
+
+        if(state == SHIP_STATE_POWERUP){
             state = SHIP_STATE_ALIVE;
         }
+
         stateTime = 0;
     }
 

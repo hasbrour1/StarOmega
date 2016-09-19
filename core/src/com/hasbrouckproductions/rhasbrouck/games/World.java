@@ -32,7 +32,6 @@ public class World {
     public static final int WORLD_STATE_NEXT_LEVEL = 1;
     public static final int WORLD_STATE_GAME_OVER = 2;
 
-    public final MainShip ship;
     public ArrayList<Enemy> enemies;
     public Boss boss;
     public ArrayList<PowerUps> powerUps;
@@ -41,13 +40,15 @@ public class World {
     public final WorldListener listener;
     public final Random rand;
 
+    public static MainShip ship;
+
     public int score;
     public int state;
 
     private GenericLevel level;
 
-    public World(WorldListener listener, int currentLevel) {
-        this.ship = new MainShip(5, 1);
+    public World(WorldListener listener, int currentLevel, MainShip mainShip) {
+        this.ship = mainShip;
         this.enemies = new ArrayList<Enemy>();
         this.powerUps = new ArrayList<PowerUps>();
         this.mainShipLasers = new ArrayList<MainLaser>();
