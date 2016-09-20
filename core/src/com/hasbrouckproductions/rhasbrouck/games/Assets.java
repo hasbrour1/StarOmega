@@ -88,7 +88,7 @@ public class Assets {
         secondBossTexture = new Texture(Gdx.files.internal("data/img/bossTwo.png"));
         thirdBossTexture = new Texture(Gdx.files.internal("data/img/bossThree.png"));
         fourthBossTexture = new Texture(Gdx.files.internal("data/img/bossFour.PNG"));
-        bossFiveUnshieldedTexture = new Texture(Gdx.files.internal("data/img/bossFiveUnshielded.png"));
+        bossFiveUnshieldedTexture = new Texture(Gdx.files.internal("data/img/bossFiveUnshielded2.png"));
         bossFiveShieldedTexture = new Texture(Gdx.files.internal("data/img/bossFiveShielded.png"));
 
         mainShip = new TextureRegion(new Texture(Gdx.files.internal("data/img/mainShipScaled.png")), 0,0, 100, 100);

@@ -11,8 +11,8 @@ import java.util.TimerTask;
  * Created by hasbrouckr on 9/16/2016.
  */
 public class BossFive extends Boss {
-    public static final int BOSS_WIDTH = 279;
-    public static final int BOSS_HEIGHT = 348;
+    public static final int BOSS_WIDTH = 450;
+    public static final int BOSS_HEIGHT = 450;
 
     public static final int SHIELD_UP = 0;
     public static final int SHIELD_DOWN = 1;
@@ -89,7 +89,7 @@ public class BossFive extends Boss {
                 break;
         }
 
-        this.bounds = new Rectangle(xPos, yPos + 100, BOSS_WIDTH, BOSS_HEIGHT - 200);
+        this.bounds = new Rectangle(xPos + 100, yPos + 100, BOSS_WIDTH - 100, BOSS_HEIGHT - 200);
 
         updateWeapons(world);
     }
@@ -98,14 +98,14 @@ public class BossFive extends Boss {
     public void moveBoss(){
         switch(moveState){
             case MOVE_DOWN:
-                if (yPos > 1) {
+                if (yPos > -120) {
                     yPos -= 150 * Gdx.graphics.getDeltaTime();
                 } else {
                     moveState = MOVE_RIGHT;
                 }
                 break;
             case MOVE_UP:
-                if (yPos < 230) {
+                if (yPos < 170) {
                     yPos += 150 * Gdx.graphics.getDeltaTime();
                 } else {
                     moveState = MOVE_LEFT;
