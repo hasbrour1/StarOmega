@@ -73,6 +73,7 @@ public class BossFive extends Boss {
                             bossTexture = Assets.bossFiveUnshieldedTexture;
                             bossState = SHIELD_DOWN;
                         }else {
+                            bossTexture = Assets.bossFiveShieldedTexture;
                             bossState = SHIELD_UP;
                         }
                     }
@@ -122,6 +123,22 @@ public class BossFive extends Boss {
                     xPos += 150 * Gdx.graphics.getDeltaTime();
                 }else{
                     moveState = MOVE_UP;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void hit(){
+        switch(bossState){
+            case SHIELD_UP:
+                //do nothing
+                break;
+            case SHIELD_DOWN:
+                hp--;
+                if(hp == 0){
+                    state = BOSS_IS_DEAD;
                 }
                 break;
             default:
