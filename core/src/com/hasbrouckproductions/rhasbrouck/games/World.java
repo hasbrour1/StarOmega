@@ -45,6 +45,8 @@ public class World {
     public int score;
     public int state;
 
+    public double lastBeamTick;
+
     private GenericLevel level;
 
     public World(WorldListener listener, int currentLevel, MainShip mainShip) {
@@ -56,6 +58,8 @@ public class World {
         this.listener = listener;
         rand = new Random();
         generateLevel(currentLevel);
+
+        lastBeamTick = TimeUtils.nanoTime();
 
         this.score = 0;
         this.state = WORLD_STATE_RUNNING;
@@ -276,7 +280,8 @@ public class World {
         len = boss.bossBeams.size();
         for(int i = 0; i < len; i++){
             EnemyBeam beam = boss.bossBeams.get(i);
-            if(beam.bounds.overlaps(ship.bounds)){
+            if(beam.bounds.overlaps(ship.bounds) && (TimeUtils.nanoTime() - lastBeamTick > (100000000 * 2))){
+                lastBeamTick = TimeUtils.nanoTime();
                 ship.gotHit();
                 listener.hit();
             }
