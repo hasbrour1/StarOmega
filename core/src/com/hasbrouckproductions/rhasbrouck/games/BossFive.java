@@ -77,7 +77,7 @@ public class BossFive extends Boss {
                             bossState = SHIELD_UP;
                         }
                     }
-                }, 0, 20*1000);
+                }, 0, 12*1000);
                 break;
             case SHIELD_DOWN:
                 moveBoss();
